@@ -5,7 +5,6 @@ import net.pretronic.dkmotd.common.maintenance.DefaultMaintenance;
 import net.pretronic.dkmotd.common.motd.DefaultMotdTemplate;
 import net.pretronic.libraries.message.bml.variable.describer.VariableDescriber;
 import net.pretronic.libraries.message.bml.variable.describer.VariableDescriberRegistry;
-import net.pretronic.libraries.utility.duration.DurationProcessor;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

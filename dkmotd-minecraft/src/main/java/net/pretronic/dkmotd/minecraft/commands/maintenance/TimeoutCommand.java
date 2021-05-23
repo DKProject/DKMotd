@@ -10,8 +10,6 @@ import net.pretronic.libraries.message.bml.variable.VariableSet;
 import net.pretronic.libraries.utility.GeneralUtil;
 import net.pretronic.libraries.utility.interfaces.ObjectOwner;
 
-import java.time.Duration;
-
 public class TimeoutCommand extends BasicCommand {
 
     private final DKMotd dkMotd;

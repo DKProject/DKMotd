@@ -1,7 +1,6 @@
 package net.pretronic.dkmotd.minecraft.commands.joinmessage.secondmessages;
 
 import net.pretronic.dkmotd.api.joinmessage.JoinMessageTemplate;
-import net.pretronic.dkmotd.minecraft.commands.CommandUtil;
 import net.pretronic.dkmotd.minecraft.config.Messages;
 import net.pretronic.libraries.command.command.configuration.CommandConfiguration;
 import net.pretronic.libraries.command.command.object.ObjectCommand;

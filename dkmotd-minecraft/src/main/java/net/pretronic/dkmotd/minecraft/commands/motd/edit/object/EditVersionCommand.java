@@ -1,7 +1,5 @@
 package net.pretronic.dkmotd.minecraft.commands.motd.edit.object;
 
-import net.pretronic.dkmotd.api.motd.MotdTemplate;
-import net.pretronic.dkmotd.minecraft.commands.motd.edit.object.EditObjectCommand;
 import net.pretronic.libraries.message.Textable;
 import net.pretronic.libraries.utility.GeneralUtil;
 import net.pretronic.libraries.utility.interfaces.ObjectOwner;

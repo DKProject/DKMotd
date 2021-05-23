@@ -1,7 +1,6 @@
 package net.pretronic.dkmotd.api.joinmessage;
 
 import java.util.Collection;
-import java.util.List;
 
 public interface JoinMessageTemplate {
 

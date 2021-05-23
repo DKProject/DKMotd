@@ -1,6 +1,5 @@
 package net.pretronic.dkmotd.minecraft.commands.motd;
 
-import net.pretronic.dkmotd.api.DKMotd;
 import net.pretronic.dkmotd.api.motd.MotdTemplate;
 import net.pretronic.dkmotd.common.DefaultDKMotd;
 import net.pretronic.dkmotd.minecraft.commands.motd.edit.*;

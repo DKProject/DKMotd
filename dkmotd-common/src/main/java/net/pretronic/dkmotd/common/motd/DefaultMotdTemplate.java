@@ -9,7 +9,10 @@ import net.pretronic.dkmotd.common.event.motd.update.DefaultMotdTemplateUpdatedE
 import net.pretronic.libraries.utility.annonations.Internal;
 import net.pretronic.libraries.utility.annonations.NotNull;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 public class DefaultMotdTemplate implements MotdTemplate {
 

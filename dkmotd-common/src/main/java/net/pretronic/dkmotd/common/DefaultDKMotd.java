@@ -1,7 +1,6 @@
 package net.pretronic.dkmotd.common;
 
 import net.pretronic.dkmotd.api.DKMotd;
-import net.pretronic.dkmotd.api.joinmessage.JoinMessageTemplateManager;
 import net.pretronic.dkmotd.api.maintenance.Maintenance;
 import net.pretronic.dkmotd.common.joinmessage.DefaultJoinMessageTemplateManager;
 import net.pretronic.dkmotd.common.maintenance.DefaultMaintenance;

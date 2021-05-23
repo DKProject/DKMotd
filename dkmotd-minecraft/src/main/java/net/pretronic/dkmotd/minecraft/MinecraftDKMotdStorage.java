@@ -1,7 +1,6 @@
 package net.pretronic.dkmotd.minecraft;
 
 import net.pretronic.dkmotd.common.DKMotdStorage;
-import net.pretronic.dkmotd.common.DefaultDKMotd;
 import net.pretronic.libraries.document.Document;
 import net.pretronic.libraries.document.type.DocumentFileType;
 import org.mcnative.runtime.api.Setting;
