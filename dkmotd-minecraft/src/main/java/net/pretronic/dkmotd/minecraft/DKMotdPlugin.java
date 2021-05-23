@@ -1,10 +1,7 @@
 package net.pretronic.dkmotd.minecraft;
 
 import net.pretronic.dkmotd.api.DKMotd;
-import net.pretronic.dkmotd.api.maintenance.Maintenance;
-import net.pretronic.dkmotd.api.motd.MotdTemplate;
 import net.pretronic.dkmotd.common.DefaultDKMotd;
-import net.pretronic.dkmotd.common.motd.DefaultMotdTemplateManager;
 import net.pretronic.dkmotd.minecraft.commands.joinmessage.JoinMessageCommand;
 import net.pretronic.dkmotd.minecraft.commands.maintenance.MaintenanceCommand;
 import net.pretronic.dkmotd.minecraft.commands.motd.MotdCommand;
@@ -12,26 +9,33 @@ import net.pretronic.dkmotd.minecraft.config.DKMotdConfig;
 import net.pretronic.dkmotd.minecraft.listener.PerformListener;
 import net.pretronic.libraries.plugin.lifecycle.Lifecycle;
 import net.pretronic.libraries.plugin.lifecycle.LifecycleState;
-import net.pretronic.libraries.utility.GeneralUtil;
-import net.pretronic.libraries.utility.Iterators;
-import net.pretronic.libraries.utility.annonations.Internal;
-import org.mcnative.runtime.api.McNative;
-import org.mcnative.runtime.api.network.component.server.ServerStatusResponse;
+import org.mcnative.licensing.context.platform.McNativeLicenseIntegration;
+import org.mcnative.licensing.exceptions.CloudNotCheckoutLicenseException;
+import org.mcnative.licensing.exceptions.LicenseNotValidException;
 import org.mcnative.runtime.api.plugin.MinecraftPlugin;
-import org.mcnative.runtime.api.protocol.MinecraftEdition;
-import org.mcnative.runtime.api.protocol.MinecraftProtocolVersion;
-import org.mcnative.runtime.api.text.Text;
-
-import java.util.Collection;
-import java.util.concurrent.TimeUnit;
 
 public class DKMotdPlugin extends MinecraftPlugin {
+
+    public static String RESOURCE_ID ="9304d68a-bbdf-11eb-8ba0-0242ac180002";
+    public static String PUBLIC_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAkzlaMKAoRUdoFOnCbd+ehZXQN4etqIWkalsGZjbKkdMnxpwhInWPtKptWqOZBa7/r8y/vZ0E0KjFXwj/dVDpjb5iCfAKw/keHsAQDF4I0vAknKtSajQjpO1DL4jFD8yaXnfbu3I4J1xbSsUgybUyvR+Mv6zyouJ4rIQd84Njd1+fRdLZnblmeFHXKjNyizSfyrJlgYOECmxccCjWMoJjZpk2CBNwqyCQOqB1/t8WZchPC0ZpXyLyY2PW3coB1YgmUqrve6t+Eyts6vsMTijRXBaHohKrXhmTYjqz/Bc4OeiggL2nPNbvDI99nIUu+2IY42AleZQu08HcbQ0TS5EZ5wIDAQAB";
 
     private DefaultDKMotd dkMotd;
 
     @Lifecycle(state = LifecycleState.LOAD)
     public void onLoad(LifecycleState state){
         getLogger().info("DKMotd is starting, please wait..");
+
+        try{
+            McNativeLicenseIntegration.newContext(this,RESOURCE_ID,PUBLIC_KEY).verifyOrCheckout();
+        }catch (LicenseNotValidException | CloudNotCheckoutLicenseException e){
+            getLogger().error("--------------------------------");
+            getLogger().error("-> Invalid license");
+            getLogger().error("-> Error: "+e.getMessage());
+            getLogger().error("--------------------------------");
+            getLogger().info("DKMotd is shutting down");
+            getLoader().shutdown();
+            return;
+        }
 
         getConfiguration().load(DKMotdConfig.class);
 
