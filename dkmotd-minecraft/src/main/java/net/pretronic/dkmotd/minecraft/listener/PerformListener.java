@@ -74,10 +74,12 @@ public class PerformListener {
             }
 
             if(template.getFavicon() != null) {
+                System.out.println("Favicon: " + template.getFavicon());
                 response.setFavicon(template.getFavicon());
             }
 
             if(template.getPlayerInfo() != null && !template.getPlayerInfo().isEmpty()) {
+                response.clearPlayerInfo();
                 for (String text : template.getPlayerInfo()) {
                     response.addPlayerInfo(Text.translateAlternateColorCodes('&', text));
                 }
