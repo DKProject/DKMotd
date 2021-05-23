@@ -27,7 +27,7 @@ public class PerformListener {
         this.dkMotd = dkMotd;
     }
 
-    @Listener
+    @Listener(priority = EventPriority.HIGH)
     public void onPing(LocalServicePingEvent event) {
         setServerStatusResponse(event.getResponse());
     }
