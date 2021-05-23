@@ -34,7 +34,6 @@ public abstract class RemoveCommand extends ObjectCommand<MotdTemplate> {
         if(remove(template, index)) {
             sender.sendMessage(this.successMessage, VariableSet.create()
                     .addDescribed("template", template));
-            System.out.println(template.getBaseLine());
         }
     }
 

@@ -42,9 +42,6 @@ public class PerformListener {
                 ? this.dkMotd.getMotdTemplateManager().getTemplate(DefaultMotdTemplateManager.DEFAULT_MAINTENANCE_TEMPLATE_NAME)
                 : this.dkMotd.getMotdTemplateManager().getActiveTemplate();
 
-        System.out.println(this.dkMotd.getMaintenance().isActive());
-        System.out.println(template);
-
         if(template != null) {
             if(template.getBaseLine() != null || template.getSecondLines() != null) {
                 String baseLine = template.getBaseLine() != null ? template.getBaseLine() : "";

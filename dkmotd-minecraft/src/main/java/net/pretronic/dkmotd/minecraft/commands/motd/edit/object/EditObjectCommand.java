@@ -34,7 +34,6 @@ public abstract class EditObjectCommand<O> extends ObjectCommand<MotdTemplate> {
         if(change(template, value)) {
             sender.sendMessage(this.successMessage, VariableSet.create()
                     .addDescribed("template", template));
-            System.out.println(template.getBaseLine());
         }
     }
 
