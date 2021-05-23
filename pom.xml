@@ -38,4 +38,18 @@
             <url>https://repository.pretronic.net/repository/pretronic/</url>
         </repository>
     </repositories>
+
+    <distributionManagement>
+        <repository>
+            <id>pretronic</id>
+            <url>https://repository.pretronic.net/repository/pretronic/</url>
+        </repository>
+    </distributionManagement>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>pretronic</id>
+            <url>https://repository.pretronic.net/repository/pretronic/</url>
+        </pluginRepository>
+    </pluginRepositories>
 </project>
