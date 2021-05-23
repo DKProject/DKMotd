@@ -3,9 +3,11 @@ package net.pretronic.dkmotd.api.event.motd.update;
 import net.pretronic.dkmotd.api.event.motd.MotdTemplateEvent;
 import net.pretronic.libraries.event.Cancellable;
 
-public interface MotdTemplateUpdateEvent<T> extends MotdTemplateEvent, Cancellable {
+public interface MotdTemplateUpdateEvent extends MotdTemplateEvent, Cancellable {
 
-    T getNewValue();
+    Object getNewValue();
 
-    void setNewValue(T value);
+    <T> T getNewValue(Class<T> clazz);
+
+    void setNewValue(Object value);
 }

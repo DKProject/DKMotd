@@ -1,13 +1,12 @@
 package net.pretronic.dkmotd.api.motd;
 
+import net.pretronic.libraries.utility.annonations.NotNull;
+
 import java.util.Collection;
-import java.util.UUID;
 
 public interface MotdTemplateManager {
 
     Collection<MotdTemplate> getTemplates();
-
-    MotdTemplate getTemplate(UUID id);
 
     MotdTemplate getTemplate(String name);
 
@@ -18,7 +17,8 @@ public interface MotdTemplateManager {
     void replicateBaseLine(MotdTemplate template);
 
 
+    @NotNull
     MotdTemplate getActiveTemplate();
 
-    void setActiveTemplate(MotdTemplate template);
+    boolean setActiveTemplate(@NotNull MotdTemplate template);
 }

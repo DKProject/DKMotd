@@ -1,38 +1,23 @@
 package net.pretronic.dkmotd.common;
 
-import net.pretronic.databasequery.api.Database;
-import net.pretronic.databasequery.api.collection.DatabaseCollection;
-import net.pretronic.databasequery.api.collection.field.FieldOption;
-import net.pretronic.databasequery.api.datatype.DataType;
+import net.pretronic.libraries.document.Document;
 
-public class DKMotdStorage {
+public interface DKMotdStorage {
 
-    private final Database database;
+    Object getObject(String key);
 
-    private final DatabaseCollection motdTemplates;
+    Document get(String key);
 
-    public DKMotdStorage(Database database) {
-        this.database = database;
 
-        this.motdTemplates = createMotdTemplates();
-    }
+    void insertObject(String key, Object value);
 
-    public DatabaseCollection getMotdTemplates() {
-        return motdTemplates;
-    }
+    void insert(String key, Document document);
 
-    private DatabaseCollection createMotdTemplates() {
-        return this.database.createCollection("dkmotd_motd_templates")
-                .field("Id", DataType.UUID, FieldOption.PRIMARY_KEY)
-                .field("Name", DataType.STRING, FieldOption.NOT_NULL, FieldOption.UNIQUE)
-                .field("BaseLine", DataType.STRING)
-                .field("SecondLines", DataType.STRING)
-                .field("Order", DataType.STRING, FieldOption.NOT_NULL)
-                .field("VersionText", DataType.STRING)
-                .field("WrongVersionText", DataType.STRING)
-                .field("SupportedVersions", DataType.STRING)
-                .field("Favicon", DataType.STRING)
-                .field("PlayerInfo", DataType.STRING)
-                .create();
-    }
+
+    void delete(String key);
+
+
+    void update(String key, Object value);
+
+    void update(String key, Document document);
 }

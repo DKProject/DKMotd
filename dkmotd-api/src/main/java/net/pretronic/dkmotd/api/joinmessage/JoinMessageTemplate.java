@@ -1,19 +1,27 @@
 package net.pretronic.dkmotd.api.joinmessage;
 
-import net.pretronic.dkmotd.api.Order;
-import net.pretronic.libraries.message.Textable;
-
+import java.util.Collection;
 import java.util.List;
 
 public interface JoinMessageTemplate {
 
-    int getId();
-
     String getName();
 
-    Textable getBaseMessage();
+    boolean setName(String name);
 
-    List<Textable> getSecondMessages();
 
-    Order getOrder();
+    String getBaseMessage();
+
+    boolean setBaseMessage(String message);
+
+
+    Collection<String> getSecondMessages();
+
+    boolean setSecondMessages(Collection<String> messages);
+
+    boolean addSecondMessage(String message);
+
+    boolean removeSecondMessage(int index);
+
+    boolean clearSecondMessages();
 }

@@ -4,22 +4,29 @@ import net.pretronic.dkmotd.api.event.motd.update.MotdTemplateUpdateEvent;
 import net.pretronic.dkmotd.api.motd.MotdTemplate;
 import net.pretronic.dkmotd.common.event.motd.DefaultMotdTemplateCancelAbleEvent;
 
-public class DefaultMotdTemplateUpdateEvent<T> extends DefaultMotdTemplateCancelAbleEvent implements MotdTemplateUpdateEvent<T> {
+public class DefaultMotdTemplateUpdateEvent extends DefaultMotdTemplateCancelAbleEvent implements MotdTemplateUpdateEvent {
 
-    private T newValue;
+    private Object newValue;
 
-    public DefaultMotdTemplateUpdateEvent(MotdTemplate template, T newValue) {
+    public DefaultMotdTemplateUpdateEvent(MotdTemplate template, Object newValue) {
         super(template);
         this.newValue = newValue;
     }
 
+
     @Override
-    public T getNewValue() {
+    public Object getNewValue() {
         return this.newValue;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
-    public void setNewValue(T value) {
+    public <T> T getNewValue(Class<T> clazz) {
+        return (T) getNewValue();
+    }
+
+    @Override
+    public void setNewValue(Object value) {
         this.newValue = value;
     }
 }

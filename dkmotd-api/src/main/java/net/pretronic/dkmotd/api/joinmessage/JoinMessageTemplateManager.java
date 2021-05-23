@@ -6,7 +6,7 @@ public interface JoinMessageTemplateManager {
 
     Collection<JoinMessageTemplate> getTemplates();
 
-    JoinMessageTemplate getTemplate(int id);
+    JoinMessageTemplate getTemplate(String name);
 
     JoinMessageTemplate createTemplate(String name);
 
@@ -15,5 +15,5 @@ public interface JoinMessageTemplateManager {
 
     JoinMessageTemplate getActiveTemplate();
 
-    void setActiveTemplate(JoinMessageTemplate template);
+    boolean setActiveTemplate(JoinMessageTemplate template);
 }

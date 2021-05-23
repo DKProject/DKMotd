@@ -32,7 +32,7 @@
                 </executions>
                 <configuration>
                     <mcnative-loader-version>${dependency.mcnative.loader}</mcnative-loader-version>
-                    <resource-loader-version>${dependency.pretronic.libraries}</resource-loader-version>
+                    <resource-loader-version>1.2.66.205-SNAPSHOT</resource-loader-version>
 
                     <manifest>
                         <installMcNative>true</installMcNative>

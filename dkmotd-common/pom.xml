@@ -31,14 +31,8 @@
         </dependency>
         <dependency>
             <groupId>net.pretronic.libraries</groupId>
-            <artifactId>pretroniclibraries-message</artifactId>
+            <artifactId>pretroniclibraries-document</artifactId>
             <version>${dependency.pretronic.libraries}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>net.pretronic.databasequery</groupId>
-            <artifactId>pretronicdatabasequery-api</artifactId>
-            <version>${dependency.pretronic.databasequery}</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

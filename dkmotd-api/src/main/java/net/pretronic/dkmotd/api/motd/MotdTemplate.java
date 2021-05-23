@@ -1,50 +1,50 @@
 package net.pretronic.dkmotd.api.motd;
 
-import net.pretronic.dkmotd.api.Order;
-import net.pretronic.libraries.message.Textable;
-
 import java.util.Collection;
 import java.util.List;
-import java.util.UUID;
 
 public interface MotdTemplate {
-
-    UUID getId();
-
 
     String getName();
 
     boolean setName(String name);
 
 
-    Textable getBaseLine();
+    String getBaseLine();
 
-    boolean setBaseLine(Textable baseLine);
-
-
-    List<Textable> getSecondLines();
-
-    boolean setSecondsLines(List<Textable> secondsLines);
+    boolean setBaseLine(String baseLine);
 
 
-    Order getOrder();
+    Collection<String> getSecondLines();
 
-    boolean setOrder(Order order);
+    boolean setSecondsLines(Collection<String> secondsLines);
+
+    boolean addSecondLine(String line);
+
+    boolean removeSecondLine(int index);
+
+    boolean clearSecondLines();
 
 
-    Textable getVersionText();
+    String getVersionText();
 
-    boolean setVersionText(Textable versionText);
+    boolean setVersionText(String versionText);
 
 
-    Textable getWrongVersionText();
+    String getWrongVersionText();
 
-    boolean setWrongVersionText(Textable wrongVersionText);
+    boolean setWrongVersionText(String wrongVersionText);
 
 
     Collection<Integer> getSupportedVersions();
 
     boolean setSupportedVersions(Collection<Integer> supportedVersions);
+
+    boolean addSupportedVersion(int version);
+
+    boolean removeSupportedVersion(int version);
+
+    boolean clearSupportedVersions();
 
 
     String getFavicon();
@@ -52,7 +52,13 @@ public interface MotdTemplate {
     boolean setFavicon(String favicon);
 
 
-    List<Textable> getPlayerInfo();
+    List<String> getPlayerInfo();
 
-    boolean setPlayerInfo(List<Textable> playerInfo);
+    boolean setPlayerInfo(List<String> playerInfo);
+
+    boolean addPlayerInfo(String playerInfo);
+
+    boolean removePlayerInfo(int index);
+
+    boolean clearPlayerInfo();
 }
