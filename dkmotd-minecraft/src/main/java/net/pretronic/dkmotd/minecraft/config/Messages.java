@@ -10,6 +10,7 @@ public class Messages {
     public static final MessageKeyComponent ERROR_NUMBER_NOT_VALID = Text.ofMessageKey("dkmotd.error.number.notValid");
     public static final MessageKeyComponent ERROR_DURATION_NOT_VALID = Text.ofMessageKey("dkmotd.error.duration.notValid");
     public static final MessageKeyComponent ERROR_VERSION_NOT_VALID = Text.ofMessageKey("dkmotd.error.version.notValid");
+    public static final MessageKeyComponent ERROR_FAVICON_NOT_VALID = Text.ofMessageKey("dkmotd.error.favicon.notValid");
 
     public static final MessageKeyComponent ERROR_MOTD_TEMPLATE_ALREADY_EXISTS = Text.ofMessageKey("dkmotd.error.motdTemplate.alreadyExists");
     public static final MessageKeyComponent ERROR_MOTD_TEMPLATE_NOT_EXISTS = Text.ofMessageKey("dkmotd.error.motdTemplate.notExists");
@@ -37,6 +38,7 @@ public class Messages {
     public static final MessageKeyComponent COMMAND_MOTD_VERSION_TEXT = Text.ofMessageKey("dkmotd.command.motd.versionText");
     public static final MessageKeyComponent COMMAND_MOTD_WRONG_VERSION_TEXT = Text.ofMessageKey("dkmotd.command.motd.wrongVersionText");
     public static final MessageKeyComponent COMMAND_MOTD_ACTIVE = Text.ofMessageKey("dkmotd.command.motd.active");
+    public static final MessageKeyComponent COMMAND_MOTD_FAVICON = Text.ofMessageKey("dkmotd.command.motd.favicon");
 
     public static final MessageKeyComponent COMMAND_MOTD_SECONDLINES_ADD = Text.ofMessageKey("dkmotd.command.motd.secondLines.add");
     public static final MessageKeyComponent COMMAND_MOTD_SECONDLINES_REMOVE = Text.ofMessageKey("dkmotd.command.motd.secondLines.remove");

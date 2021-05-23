@@ -13,6 +13,7 @@ messages:
   dkmotd.error.number.notValid: '${dkmotd.prefix} &e{value} is not a valid number'
   dkmotd.error.duration.notValid: '${dkmotd.prefix} &e{value} is not a valid duration'
   dkmotd.error.version.notValid: '${dkmotd.prefix} &e{value} is not a valid version'
+  dkmotd.error.favicon.notValid: '${dkmotd.prefix} &e{value} is not a valid favicon'
 
   dkmotd.error.motdTemplate.notExists: '${dkmotd.prefix} &cThe motd template &e{name} &cdoes not exists'
   dkmotd.error.motdTemplate.alreadyExists: '${dkmotd.prefix} &cThe motd template &e{template.name} &calready exists'
@@ -79,6 +80,7 @@ messages:
   dkmotd.command.motd.versionText: '${dkmotd.prefix} &7You have changed the version text to &e{template.versionText}'
   dkmotd.command.motd.wrongVersionText: '${dkmotd.prefix} &7You have changed the wrong version text to &e{template.wrongVersionText}'
   dkmotd.command.motd.active: '${dkmotd.prefix} &7You have changed the active motd template to &e{template.name}'
+  dkmotd.command.motd.favicon: '${dkmotd.prefix} &7You have changed the favicon to &e{favicon}'
 
   dkmotd.command.motd.secondLines.add: '${dkmotd.prefix} &7You have added a second line'
   dkmotd.command.motd.secondLines.set: '${dkmotd.prefix} &7You have set the second lines'
