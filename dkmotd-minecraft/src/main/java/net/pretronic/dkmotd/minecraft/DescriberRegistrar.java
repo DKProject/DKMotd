@@ -27,7 +27,8 @@ public class DescriberRegistrar {
             SimpleDateFormat format = new SimpleDateFormat(DKMotdConfig.DATE_FORMAT);
             return maintenance.getTimeout() == -1 ? "no timeout" : format.format(new Date(maintenance.getTimeout()));
         });
-        maintenanceDescriber.registerFunction("reason", maintenance -> maintenance.getReason() == null ? "none" : Text.parse(maintenance.getReason()));
+        maintenanceDescriber.registerFunction("reason", maintenance -> maintenance.getReason() == null ? "none"
+                : Text.translateAlternateColorCodes('&', maintenance.getReason()));
         maintenanceDescriber.registerFunction("formattedRemaining", maintenance -> DurationProcessor.getStandard().format(maintenance.getRemaining()));
 
         VariableDescriber<DefaultJoinMessageTemplate> joinMessageDescriber = VariableDescriberRegistry.registerDescriber(DefaultJoinMessageTemplate.class);
