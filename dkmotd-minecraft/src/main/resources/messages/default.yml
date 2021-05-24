@@ -112,13 +112,16 @@ messages:
   &7/maintenance active
   &7/maintenance info
   &7/maintenance timeout <timeout>
-  &7/maintenance duration <duration>'
+  &7/maintenance duration <duration>
+  &7/maintenance reason <reason>'
   dkmotd.command.maintenance.active.on: '${dkmotd.prefix.maintenance} &7You have turned &aon &7the maintenance'
   dkmotd.command.maintenance.active.off: '${dkmotd.prefix.maintenance} &7You have turned &coff &7the maintenance'
   dkmotd.command.maintenance.timeout: '${dkmotd.prefix.maintenance} &7You have changed the maintenance timeout to &e{maintenance.formattedTimeout}'
+  dkmotd.command.maintenance.reason: '${dkmotd.prefix.maintenance} &7You have changed the maintenance reason to &e{maintenance.reason}'
   dkmotd.command.maintenance.info: '${dkmotd.prefix.maintenance} &cMaintenance info
   &7Active&8: &e{maintenance.active}
-  &7Timeout&8: &e{maintenance.formattedTimeout}'
+  &7Timeout&8: &e{maintenance.formattedTimeout}
+  &7Reason&8: &e{maintenance.reason}'
 
 
   dkmotd.command.joinMessage.help: '${dkmotd.prefix} &cInvalid usage of joinmessage command&8:

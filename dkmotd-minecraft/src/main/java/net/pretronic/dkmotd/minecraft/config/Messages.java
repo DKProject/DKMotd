@@ -63,6 +63,7 @@ public class Messages {
     public static final MessageKeyComponent COMMAND_MAINTENANCE_ACTIVE_ON = Text.ofMessageKey("dkmotd.command.maintenance.active.on");
     public static final MessageKeyComponent COMMAND_MAINTENANCE_ACTIVE_OFF = Text.ofMessageKey("dkmotd.command.maintenance.active.off");
     public static final MessageKeyComponent COMMAND_MAINTENANCE_TIMEOUT = Text.ofMessageKey("dkmotd.command.maintenance.timeout");
+    public static final MessageKeyComponent COMMAND_MAINTENANCE_REASON = Text.ofMessageKey("dkmotd.command.maintenance.reason");
     public static final MessageKeyComponent COMMAND_MAINTENANCE_INFO = Text.ofMessageKey("dkmotd.command.maintenance.info");
 
 

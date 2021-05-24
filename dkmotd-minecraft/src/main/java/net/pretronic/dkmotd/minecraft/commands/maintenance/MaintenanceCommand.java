@@ -17,6 +17,7 @@ public class MaintenanceCommand extends MainCommand implements NotFindable {
         registerCommand(new TimeoutCommand(owner, dkMotd));
         registerCommand(new DurationCommand(owner, dkMotd));
         registerCommand(new InfoCommand(owner, dkMotd));
+        registerCommand(new ReasonCommand(owner, dkMotd));
     }
 
     @Override
