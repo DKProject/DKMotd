@@ -74,7 +74,6 @@ public class PerformListener {
             }
 
             if(template.getFavicon() != null) {
-                System.out.println("Favicon: " + template.getFavicon());
                 response.setFavicon(template.getFavicon());
             }
 
