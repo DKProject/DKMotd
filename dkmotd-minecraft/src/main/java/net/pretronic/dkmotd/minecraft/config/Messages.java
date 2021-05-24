@@ -56,6 +56,9 @@ public class Messages {
     public static final MessageKeyComponent COMMAND_MOTD_SUPPORTEDVERSIONS_CLEAR = Text.ofMessageKey("dkmotd.command.motd.supportedVersions.clear");
 
 
+    public static final MessageKeyComponent MAINTENANCE_MESSAGE_TIMEOUT = Text.ofMessageKey("dkmotd.maintenance.message.timeout");
+    public static final MessageKeyComponent MAINTENANCE_MESSAGE_PERMANENT = Text.ofMessageKey("dkmotd.maintenance.message.permanent");
+
     public static final MessageKeyComponent COMMAND_MAINTENANCE_HELP = Text.ofMessageKey("dkmotd.command.maintenance.help");
     public static final MessageKeyComponent COMMAND_MAINTENANCE_ACTIVE_ON = Text.ofMessageKey("dkmotd.command.maintenance.active.on");
     public static final MessageKeyComponent COMMAND_MAINTENANCE_ACTIVE_OFF = Text.ofMessageKey("dkmotd.command.maintenance.active.off");

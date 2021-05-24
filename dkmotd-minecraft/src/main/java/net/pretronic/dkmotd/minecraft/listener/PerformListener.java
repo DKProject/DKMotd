@@ -2,13 +2,18 @@ package net.pretronic.dkmotd.minecraft.listener;
 
 import net.pretronic.dkmotd.api.DKMotd;
 import net.pretronic.dkmotd.api.joinmessage.JoinMessageTemplate;
+import net.pretronic.dkmotd.api.maintenance.Maintenance;
 import net.pretronic.dkmotd.api.motd.MotdTemplate;
 import net.pretronic.dkmotd.common.motd.DefaultMotdTemplateManager;
+import net.pretronic.dkmotd.minecraft.config.Messages;
+import net.pretronic.dkmotd.minecraft.config.Permissions;
 import net.pretronic.libraries.event.EventPriority;
 import net.pretronic.libraries.event.Listener;
+import net.pretronic.libraries.message.bml.variable.VariableSet;
 import net.pretronic.libraries.utility.GeneralUtil;
 import net.pretronic.libraries.utility.Iterators;
 import org.mcnative.runtime.api.McNative;
+import org.mcnative.runtime.api.event.player.login.MinecraftPlayerLoginEvent;
 import org.mcnative.runtime.api.event.player.login.MinecraftPlayerPostLoginEvent;
 import org.mcnative.runtime.api.event.service.local.LocalServicePingEvent;
 import org.mcnative.runtime.api.network.component.server.ServerStatusResponse;
@@ -16,6 +21,7 @@ import org.mcnative.runtime.api.player.OnlineMinecraftPlayer;
 import org.mcnative.runtime.api.protocol.MinecraftEdition;
 import org.mcnative.runtime.api.protocol.MinecraftProtocolVersion;
 import org.mcnative.runtime.api.text.Text;
+import org.mcnative.runtime.api.text.components.MessageComponent;
 
 import java.util.Collection;
 
@@ -32,8 +38,21 @@ public class PerformListener {
         setServerStatusResponse(event.getResponse());
     }
 
+    @Listener
+    public void onLogin(MinecraftPlayerLoginEvent event) {
+        if(event.isCancelled()) return;
+        Maintenance maintenance = dkMotd.getMaintenance();
+        if(maintenance.isActive() && !event.getOnlinePlayer().hasPermission(Permissions.MAINTENANCE_BYPASS)) {
+            event.setCancelled(true);
+            MessageComponent<?> cancelMessage = maintenance.hasTimeout()
+                    ? Messages.MAINTENANCE_MESSAGE_TIMEOUT
+                    : Messages.MAINTENANCE_MESSAGE_PERMANENT;
+            event.setCancelReason(cancelMessage, VariableSet.create().addDescribed("maintenance", maintenance));
+        }
+    }
+
     @Listener(priority = EventPriority.LOW)
-    public void onJoin(MinecraftPlayerPostLoginEvent event) {
+    public void onPostLogin(MinecraftPlayerPostLoginEvent event) {
         sendJoinMessage(event.getOnlinePlayer());
     }
 

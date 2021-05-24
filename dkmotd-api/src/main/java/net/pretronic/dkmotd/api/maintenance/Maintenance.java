@@ -6,7 +6,18 @@ public interface Maintenance {
 
     boolean setActive(boolean active);
 
+
+    boolean hasTimeout();
+
     long getTimeout();
 
     boolean setTimeout(long timeout);
+
+
+    long getRemaining();
+
+
+    String getReason();
+
+    boolean setReason(String reason);
 }

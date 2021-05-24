@@ -3,8 +3,11 @@ package net.pretronic.dkmotd.minecraft;
 import net.pretronic.dkmotd.common.joinmessage.DefaultJoinMessageTemplate;
 import net.pretronic.dkmotd.common.maintenance.DefaultMaintenance;
 import net.pretronic.dkmotd.common.motd.DefaultMotdTemplate;
+import net.pretronic.dkmotd.minecraft.config.DKMotdConfig;
 import net.pretronic.libraries.message.bml.variable.describer.VariableDescriber;
 import net.pretronic.libraries.message.bml.variable.describer.VariableDescriberRegistry;
+import net.pretronic.libraries.utility.duration.DurationProcessor;
+import org.mcnative.runtime.api.text.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -21,9 +24,11 @@ public class DescriberRegistrar {
 
         VariableDescriber<DefaultMaintenance> maintenanceDescriber = VariableDescriberRegistry.registerDescriber(DefaultMaintenance.class);
         maintenanceDescriber.registerFunction("formattedTimeout", maintenance -> {
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            SimpleDateFormat format = new SimpleDateFormat(DKMotdConfig.DATE_FORMAT);
             return maintenance.getTimeout() == -1 ? "no timeout" : format.format(new Date(maintenance.getTimeout()));
         });
+        maintenanceDescriber.registerFunction("reason", maintenance -> maintenance.getReason() == null ? "none" : Text.parse(maintenance.getReason()));
+        maintenanceDescriber.registerFunction("formattedRemaining", maintenance -> DurationProcessor.getStandard().format(maintenance.getRemaining()));
 
         VariableDescriber<DefaultJoinMessageTemplate> joinMessageDescriber = VariableDescriberRegistry.registerDescriber(DefaultJoinMessageTemplate.class);
         joinMessageDescriber.registerFunction("name", template -> template.getName() == null ? "unset" : template.getName());

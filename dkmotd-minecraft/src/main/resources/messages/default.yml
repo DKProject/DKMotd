@@ -7,6 +7,7 @@ meta:
     code: 'en'
 messages:
   dkmotd.prefix: '&8» &bDKMotd &8|&f'
+  dkmotd.prefix.maintenance: '&8» &4Maintenance &8|&f'
 
 
   dkmotd.error.index.notValid: '${dkmotd.prefix} &e{value} is not a valid index'
@@ -97,16 +98,25 @@ messages:
   dkmotd.command.motd.supportedVersions.remove: '${dkmotd.prefix} &7You have removed a supported version'
   dkmotd.command.motd.supportedVersions.clear: '${dkmotd.prefix} &7You have cleared the supported version'
 
-
-  dkmotd.command.maintenance.help: '${dkmotd.prefix} &cInvalid usage of maintenance command&8:
+  dkmotd.maintenance.message.timeout: '&e&lexample.net&r
+  &e
+  &cThis server is currently in maintenance mode
+  &3Reason&8: &4&l{maintenance.reason}
+  &e
+  &3Remaining time&8: &e{maintenance.formattedRemaining}'
+  dkmotd.maintenance.message.permanent: '&e&lexample.net&r
+  &e
+  &cThis server is currently in maintenance mode
+  &3Reason&8: &4&l{maintenance.reason}'
+  dkmotd.command.maintenance.help: '${dkmotd.prefix.maintenance} &cInvalid usage of maintenance command&8:
   &7/maintenance active
   &7/maintenance info
   &7/maintenance timeout <timeout>
   &7/maintenance duration <duration>'
-  dkmotd.command.maintenance.active.on: '${dkmotd.prefix} &7You have turned &aon &7the maintenance'
-  dkmotd.command.maintenance.active.off: '${dkmotd.prefix} &7You have turned &coff &7the maintenance'
-  dkmotd.command.maintenance.timeout: '${dkmotd.prefix} &7You have changed the maintenance timeout to &e{maintenance.formattedTimeout}'
-  dkmotd.command.maintenance.info: '${dkmotd.prefix} &cMaintenance info
+  dkmotd.command.maintenance.active.on: '${dkmotd.prefix.maintenance} &7You have turned &aon &7the maintenance'
+  dkmotd.command.maintenance.active.off: '${dkmotd.prefix.maintenance} &7You have turned &coff &7the maintenance'
+  dkmotd.command.maintenance.timeout: '${dkmotd.prefix.maintenance} &7You have changed the maintenance timeout to &e{maintenance.formattedTimeout}'
+  dkmotd.command.maintenance.info: '${dkmotd.prefix.maintenance} &cMaintenance info
   &7Active&8: &e{maintenance.active}
   &7Timeout&8: &e{maintenance.formattedTimeout}'
 
