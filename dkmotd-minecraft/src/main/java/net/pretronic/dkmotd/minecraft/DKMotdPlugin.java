@@ -2,6 +2,7 @@ package net.pretronic.dkmotd.minecraft;
 
 import net.pretronic.dkmotd.api.DKMotd;
 import net.pretronic.dkmotd.common.DefaultDKMotd;
+import net.pretronic.dkmotd.minecraft.commands.DKMotdCommand;
 import net.pretronic.dkmotd.minecraft.commands.joinmessage.JoinMessageCommand;
 import net.pretronic.dkmotd.minecraft.commands.maintenance.MaintenanceCommand;
 import net.pretronic.dkmotd.minecraft.commands.motd.MotdCommand;
@@ -61,6 +62,7 @@ public class DKMotdPlugin extends MinecraftPlugin {
         getRuntime().getLocal().getCommandManager().registerCommand(new MotdCommand(this, DKMotdConfig.COMMAND_MOTD, dkMotd));
         getRuntime().getLocal().getCommandManager().registerCommand(new MaintenanceCommand(this, DKMotdConfig.COMMAND_MAINTENANCE, dkMotd));
         getRuntime().getLocal().getCommandManager().registerCommand(new JoinMessageCommand(this, DKMotdConfig.COMMAND_JOIN_MESSAGE, dkMotd));
+        getRuntime().getLocal().getCommandManager().registerCommand(new DKMotdCommand(this));
     }
 
 
