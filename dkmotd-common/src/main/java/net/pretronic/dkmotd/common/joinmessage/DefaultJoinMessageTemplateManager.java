@@ -102,25 +102,22 @@ public class DefaultJoinMessageTemplateManager implements JoinMessageTemplateMan
 
         this.activeTemplateName = template.getName();
 
-        if(this.dkMotd.getStorage().getObject(STORAGE_ACTIVE_JOIN_MESSAGE_TEMPLATE) != null) {
-            this.dkMotd.getStorage().update(STORAGE_ACTIVE_JOIN_MESSAGE_TEMPLATE, this.activeTemplateName);
-        } else {
-            this.dkMotd.getStorage().insertObject(STORAGE_ACTIVE_JOIN_MESSAGE_TEMPLATE, this.activeTemplateName);
-        }
+        this.dkMotd.getStorage().set(STORAGE_ACTIVE_JOIN_MESSAGE_TEMPLATE, this.activeTemplateName);
+
         this.dkMotd.getEventBus().callEvent(JoinMessageTemplateActiveChangedEvent.class, new DefaultJoinMessageTemplateActiveChangedEvent(template));
         return true;
     }
 
     @Internal
     public void updateTemplatesStorage() {
-        this.dkMotd.getStorage().update(STORAGE_JOIN_MESSAGE_TEMPLATES, Document.newDocument(this.templates));
+        this.dkMotd.getStorage().set(STORAGE_JOIN_MESSAGE_TEMPLATES, Document.newDocument(this.templates));
     }
 
     private Collection<JoinMessageTemplate> loadTemplates() {
         Document document = this.dkMotd.getStorage().get(STORAGE_JOIN_MESSAGE_TEMPLATES);
         if(document == null) {
             Collection<JoinMessageTemplate> templates = new ArrayList<>();
-            this.dkMotd.getStorage().insert(STORAGE_JOIN_MESSAGE_TEMPLATES, Document.newDocument(templates));
+            this.dkMotd.getStorage().set(STORAGE_JOIN_MESSAGE_TEMPLATES, Document.newDocument(templates));
             return templates;
         }
         return new ArrayList<>(document.getAsObject(new TypeReference<Collection<DefaultJoinMessageTemplate>>(){}));

@@ -63,14 +63,14 @@ public class DefaultDKMotd implements DKMotd {
 
     @Internal
     public void updateMaintenanceStorage() {
-        getStorage().update(STORAGE_MAINTENANCE, Document.newDocument(this.maintenance));
+        getStorage().set(STORAGE_MAINTENANCE, Document.newDocument(this.maintenance));
     }
 
     private DefaultMaintenance loadMaintenance() {
         Document value = getStorage().get(STORAGE_MAINTENANCE);
         if(value == null) {
             DefaultMaintenance maintenance = new DefaultMaintenance(this);
-            getStorage().insert(STORAGE_MAINTENANCE, Document.newDocument(maintenance));
+            getStorage().set(STORAGE_MAINTENANCE, Document.newDocument(maintenance));
             return maintenance;
         }
         return value.getAsObject(DefaultMaintenance.class).setDKMotd(this);

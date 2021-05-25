@@ -8,16 +8,7 @@ public interface DKMotdStorage {
 
     Document get(String key);
 
-
-    void insertObject(String key, Object value);
-
-    void insert(String key, Document document);
-
-
     void delete(String key);
 
-
-    void update(String key, Object value);
-
-    void update(String key, Document document);
+    void set(String key, Object value);
 }

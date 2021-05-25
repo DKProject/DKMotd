@@ -1,5 +1,8 @@
 package net.pretronic.dkmotd.api.maintenance;
 
+import java.util.Collection;
+import java.util.UUID;
+
 public interface Maintenance {
 
     boolean isActive();
@@ -20,4 +23,15 @@ public interface Maintenance {
     String getReason();
 
     boolean setReason(String reason);
+
+
+    Collection<UUID> getWhitelist();
+
+    boolean isWhitelisted(UUID uniqueId);
+
+    boolean addWhitelist(UUID uniqueId);
+
+    boolean removeWhitelist(UUID uniqueId);
+
+    boolean clearWhitelist();
 }

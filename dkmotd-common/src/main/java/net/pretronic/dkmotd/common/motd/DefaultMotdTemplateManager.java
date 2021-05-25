@@ -140,14 +140,14 @@ public class DefaultMotdTemplateManager implements MotdTemplateManager {
 
         this.activeTemplateName = template.getName();
 
-        this.dkMotd.getStorage().update(STORAGE_ACTIVE_MOTD_TEMPLATE, this.activeTemplateName);
+        this.dkMotd.getStorage().set(STORAGE_ACTIVE_MOTD_TEMPLATE, this.activeTemplateName);
         this.dkMotd.getEventBus().callEvent(MotdTemplateActiveChangedEvent.class, new DefaultMotdActiveChangedEvent(template));
         return true;
     }
 
     @Internal
     public void updateTemplatesStorage() {
-        this.dkMotd.getStorage().update(STORAGE_MOTD_TEMPLATES, Document.newDocument(this.templates));
+        this.dkMotd.getStorage().set(STORAGE_MOTD_TEMPLATES, Document.newDocument(this.templates));
     }
 
     private Collection<MotdTemplate> loadTemplates() {
@@ -157,7 +157,7 @@ public class DefaultMotdTemplateManager implements MotdTemplateManager {
             templates.add(DEFAULT_TEMPLATE);
             templates.add(DEFAULT_MAINTENANCE_TEMPLATE);
 
-            this.dkMotd.getStorage().insert(STORAGE_MOTD_TEMPLATES, Document.newDocument(templates));
+            this.dkMotd.getStorage().set(STORAGE_MOTD_TEMPLATES, Document.newDocument(templates));
             return templates;
         }
         return new ArrayList<>(document.getAsObject(new TypeReference<Collection<DefaultMotdTemplate>>(){}));
@@ -166,7 +166,7 @@ public class DefaultMotdTemplateManager implements MotdTemplateManager {
     private String loadActiveTemplateName() {
         Object value = this.dkMotd.getStorage().getObject(STORAGE_ACTIVE_MOTD_TEMPLATE);
         if(value == null) {
-            this.dkMotd.getStorage().insertObject(STORAGE_ACTIVE_MOTD_TEMPLATE, DEFAULT_TEMPLATE_NAME);
+            this.dkMotd.getStorage().set(STORAGE_ACTIVE_MOTD_TEMPLATE, DEFAULT_TEMPLATE_NAME);
             return DEFAULT_TEMPLATE_NAME;
         }
         return (String) value;
