@@ -7,7 +7,7 @@
     <groupId>net.pretronic.dkmotd</groupId>
     <artifactId>DKMotd</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.8.14-SNAPSHOT</version>
+    <version>1.0.9.15-SNAPSHOT</version>
     <modules>
         <module>dkmotd-api</module>
         <module>dkmotd-common</module>
