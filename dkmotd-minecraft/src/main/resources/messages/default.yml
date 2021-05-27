@@ -9,12 +9,14 @@ messages:
   dkmotd.prefix: '&8» &bDKMotd &8|&f'
   dkmotd.prefix.maintenance: '&8» &4Maintenance &8|&f'
 
-
   dkmotd.error.index.notValid: '${dkmotd.prefix} &e{value} is not a valid index'
   dkmotd.error.number.notValid: '${dkmotd.prefix} &e{value} is not a valid number'
   dkmotd.error.duration.notValid: '${dkmotd.prefix} &e{value} is not a valid duration'
   dkmotd.error.version.notValid: '${dkmotd.prefix} &e{value} is not a valid version'
   dkmotd.error.favicon.notValid: '${dkmotd.prefix} &e{value} is not a valid favicon'
+  dkmotd.error.player.notFound: '${dkmotd.prefix} &7Player &e{name} &7not found'
+  dkmotd.error.maintenance.whitelist.player.already: '${dkmotd.prefix} &7Player &e{player.displayName} &7is already on maintenance whitelist'
+  dkmotd.error.maintenance.whitelist.player.not: '${dkmotd.prefix} &7Player &e{player.displayName} &7is not on maintenance whitelist'
 
   dkmotd.error.motdTemplate.notExists: '${dkmotd.prefix} &cThe motd template &e{name} &cdoes not exists'
   dkmotd.error.motdTemplate.alreadyExists: '${dkmotd.prefix} &cThe motd template &e{template.name} &calready exists'
@@ -43,24 +45,25 @@ messages:
   &7/motd <name> secondlines add <line>
   &7/motd <name> secondlines remove <index>
   &7/motd <name> secondlines set <line>
-  &7/motd <name> secondlines clear'
+  &7/motd <name> secondlines clear
+  &7/motd <name> secondlines list'
 
   dkmotd.command.motd.playerInfo.help: '${dkmotd.prefix} &cInvalid usage of motd playerInfo command&8:
   &7/motd <name> playerInfo add <line>
   &7/motd <name> playerInfo remove <index>
   &7/motd <name> playerInfo set <line>
-  &7/motd <name> playerInfo clear'
+  &7/motd <name> playerInfo clear
+  &7/motd <name> playerInfo list'
 
   dkmotd.command.motd.supportedVersions.help: '${dkmotd.prefix} &cInvalid usage of motd supportedVersions command&8:
   &7/motd <name> supportedVersions add <version>
   &7/motd <name> supportedVersions remove <version>
   &7/motd <name> supportedVersions set <version>
-  &7/motd <name> supportedVersions clear'
+  &7/motd <name> supportedVersions clear
+  &7/motd <name> supportedVersions list'
 
   dkmotd.command.motd.create: '${dkmotd.prefix} &7You have created the motd template &e{template.name}'
-
   dkmotd.command.motd.delete: '${dkmotd.prefix} &7You have deleted the motd template &e{template.name}'
-
   dkmotd.command.motd.info: '${dkmotd.prefix} &7Motd template &e{template.name} &7info
   &7Base line&8: &e{template.baseLine}
   &7Version text&8: &e{template.versionText}
@@ -87,16 +90,22 @@ messages:
   dkmotd.command.motd.secondLines.set: '${dkmotd.prefix} &7You have set the second lines'
   dkmotd.command.motd.secondLines.remove: '${dkmotd.prefix} &7You have removed a second line'
   dkmotd.command.motd.secondLines.clear: '${dkmotd.prefix} &7You have cleared the second lines'
+  dkmotd.command.motd.secondLines.list: '${dkmotd.prefix} &7Second lines&8: @for("line" in {template.secondLines}, ${dkmotd.command.motd.secondLines.list.loop},"\n", "\n")'
+  dkmotd.command.motd.secondLines.list.loop: '&8- &e{line}'
 
   dkmotd.command.motd.playerInfo.add: '${dkmotd.prefix} &7You have added a player info'
   dkmotd.command.motd.playerInfo.set: '${dkmotd.prefix} &7You have set the player info'
   dkmotd.command.motd.playerInfo.remove: '${dkmotd.prefix} &7You have removed a player info'
   dkmotd.command.motd.playerInfo.clear: '${dkmotd.prefix} &7You have cleared the player info'
+  dkmotd.command.motd.playerInfo.list: '${dkmotd.prefix} &7Player info&8: @for("playerInfo" in {template.playerInfo}, ${dkmotd.command.motd.playerInfo.list.loop},"\n", "\n")'
+  dkmotd.command.motd.playerInfo.list.loop: '&8- &e{playerInfo}'
 
   dkmotd.command.motd.supportedVersions.add: '${dkmotd.prefix} &7You have added a supported version'
   dkmotd.command.motd.supportedVersions.set: '${dkmotd.prefix} &7You have set the supported version'
   dkmotd.command.motd.supportedVersions.remove: '${dkmotd.prefix} &7You have removed a supported version'
   dkmotd.command.motd.supportedVersions.clear: '${dkmotd.prefix} &7You have cleared the supported version'
+  dkmotd.command.motd.supportedVersions.list: '${dkmotd.prefix} &7Supported versions&8: @for("version" in {template.supportedVersions}, ${dkmotd.command.motd.supportedVersions.list.loop},"\n", "\n")'
+  dkmotd.command.motd.supportedVersions.list.loop: '&8- &e{version}'
 
   dkmotd.maintenance.message.timeout: '&e&lexample.net&r
   &e
@@ -113,7 +122,8 @@ messages:
   &7/maintenance info
   &7/maintenance timeout <timeout>
   &7/maintenance duration <duration>
-  &7/maintenance reason <reason>'
+  &7/maintenance reason <reason>
+  &7/maintenance whitelist'
   dkmotd.command.maintenance.active.on: '${dkmotd.prefix.maintenance} &7You have turned &aon &7the maintenance'
   dkmotd.command.maintenance.active.off: '${dkmotd.prefix.maintenance} &7You have turned &coff &7the maintenance'
   dkmotd.command.maintenance.timeout: '${dkmotd.prefix.maintenance} &7You have changed the maintenance timeout to &e{maintenance.formattedTimeout}'
@@ -123,6 +133,16 @@ messages:
   &7Timeout&8: &e{maintenance.formattedTimeout}
   &7Reason&8: &e{maintenance.reason}'
 
+  dkmotd.command.maintenance.whitelist.help: '${dkmotd.prefix.maintenance} &cInvalid usage of whitelist command&8:
+  &7/maintenance whitelist info
+  &7/maintenance whitelist add <player>
+  &7/maintenance whitelist remove <player>
+  &7/maintenance whitelist clear'
+  dkmotd.command.maintenance.whitelist.info: '${dkmotd.prefix.maintenance} &7Maintenance whitelist&8: @for("player" in {maintenance.whitelist}, ${dkmotd.command.maintenance.whitelist.info.loop},"\n", "\n")'
+  dkmotd.command.maintenance.whitelist.info.loop: '&8- &e{player.displayName}'
+  dkmotd.command.maintenance.whitelist.add: '${dkmotd.prefix.maintenance} &7You have added &e{player.displayName} &7to the maintenance whitelist'
+  dkmotd.command.maintenance.whitelist.remove: '${dkmotd.prefix.maintenance} &7You have removed &e{player.displayName} &7to the maintenance whitelist'
+  dkmotd.command.maintenance.whitelist.clear: '${dkmotd.prefix.maintenance} &7You have cleared the maintenance whitelist'
 
   dkmotd.command.joinMessage.help: '${dkmotd.prefix} &cInvalid usage of joinmessage command&8:
   &7/joinmessage list
@@ -154,9 +174,12 @@ messages:
   &7/joinmessage <name> secondMessages add <line>
   &7/joinmessage <name> secondMessages remove <index>
   &7/joinmessage <name> secondMessages set <line>
-  &7/joinmessage <name> secondMessages clear'
+  &7/joinmessage <name> secondMessages clear
+  &7/joinmessage <name> secondMessages list'
 
   dkmotd.command.joinMessage.secondMessages.add: '${dkmotd.prefix} &7You have added a second message'
   dkmotd.command.joinMessage.secondMessages.set: '${dkmotd.prefix} &7You have set the second messages'
   dkmotd.command.joinMessage.secondMessages.remove: '${dkmotd.prefix} &7You have removed a second message'
   dkmotd.command.joinMessage.secondMessages.clear: '${dkmotd.prefix} &7You have cleared the second messages'
+  dkmotd.command.joinMessage.secondMessages.list: '${dkmotd.prefix} &7Second messages&8: @for("message" in {template.secondMessages}, ${dkmotd.command.joinMessage.secondMessages.list.loop},"\n", "\n")'
+  dkmotd.command.joinMessage.secondMessages.list.loop: '&8- &e{message}'

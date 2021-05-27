@@ -6,7 +6,9 @@ import net.pretronic.dkmotd.common.motd.DefaultMotdTemplate;
 import net.pretronic.dkmotd.minecraft.config.DKMotdConfig;
 import net.pretronic.libraries.message.bml.variable.describer.VariableDescriber;
 import net.pretronic.libraries.message.bml.variable.describer.VariableDescriberRegistry;
+import net.pretronic.libraries.utility.Iterators;
 import net.pretronic.libraries.utility.duration.DurationProcessor;
+import org.mcnative.runtime.api.McNative;
 import org.mcnative.runtime.api.text.Text;
 
 import java.text.SimpleDateFormat;
@@ -30,6 +32,7 @@ public class DescriberRegistrar {
         maintenanceDescriber.registerFunction("reason", maintenance -> maintenance.getReason() == null ? "none"
                 : Text.translateAlternateColorCodes('&', maintenance.getReason()));
         maintenanceDescriber.registerFunction("formattedRemaining", maintenance -> DurationProcessor.getStandard().format(maintenance.getRemaining()));
+        maintenanceDescriber.registerFunction("whitelist", maintenance -> Iterators.map(maintenance.getWhitelist(), uniqueId -> McNative.getInstance().getPlayerManager().getPlayer(uniqueId)));
 
         VariableDescriber<DefaultJoinMessageTemplate> joinMessageDescriber = VariableDescriberRegistry.registerDescriber(DefaultJoinMessageTemplate.class);
         joinMessageDescriber.registerFunction("name", template -> template.getName() == null ? "unset" : template.getName());

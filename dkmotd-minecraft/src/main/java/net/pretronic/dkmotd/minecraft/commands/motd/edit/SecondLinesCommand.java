@@ -11,7 +11,7 @@ public class SecondLinesCommand extends EditObjectListCommand {
 
     public SecondLinesCommand(ObjectOwner owner) {
         super(owner, "secondLines", Messages.COMMAND_MOTD_SECONDLINES_HELP, Messages.COMMAND_MOTD_SECONDLINES_ADD, Messages.COMMAND_MOTD_SECONDLINES_REMOVE,
-                Messages.COMMAND_MOTD_SECONDLINES_SET, Messages.COMMAND_MOTD_SECONDLINES_CLEAR);
+                Messages.COMMAND_MOTD_SECONDLINES_SET, Messages.COMMAND_MOTD_SECONDLINES_CLEAR, Messages.COMMAND_MOTD_SECONDLINES_LIST);
     }
 
     @Override

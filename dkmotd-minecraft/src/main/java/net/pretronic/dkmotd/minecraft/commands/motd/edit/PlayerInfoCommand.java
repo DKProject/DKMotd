@@ -11,7 +11,7 @@ public class PlayerInfoCommand extends EditObjectListCommand {
 
     public PlayerInfoCommand(ObjectOwner owner) {
         super(owner, "playerInfo", Messages.COMMAND_MOTD_PLAYERINFO_HELP, Messages.COMMAND_MOTD_PLAYERINFO_ADD, Messages.COMMAND_MOTD_PLAYERINFO_REMOVE,
-                Messages.COMMAND_MOTD_PLAYERINFO_SET, Messages.COMMAND_MOTD_PLAYERINFO_CLEAR);
+                Messages.COMMAND_MOTD_PLAYERINFO_SET, Messages.COMMAND_MOTD_PLAYERINFO_CLEAR, Messages.COMMAND_MOTD_PLAYERINFO_LIST);
     }
 
     @Override

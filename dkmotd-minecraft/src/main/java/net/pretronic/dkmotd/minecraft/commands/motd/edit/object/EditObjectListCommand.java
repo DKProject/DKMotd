@@ -8,12 +8,15 @@ import net.pretronic.libraries.command.sender.CommandSender;
 import net.pretronic.libraries.message.Textable;
 import net.pretronic.libraries.utility.interfaces.ObjectOwner;
 
+import java.util.List;
+
 public abstract class EditObjectListCommand extends MainObjectCommand<MotdTemplate> implements DefinedNotFindable<MotdTemplate> {
 
     private final Textable helpMessage;
 
     public EditObjectListCommand(ObjectOwner owner, String commandName, Textable helpMessage, Textable addSuccessMessage,
-                                 Textable removeSuccessMessage, Textable setSuccessMessage, Textable clearSuccessMessage) {
+                                 Textable removeSuccessMessage, Textable setSuccessMessage, Textable clearSuccessMessage,
+                                 Textable listMessage) {
         super(owner, CommandConfiguration.name(commandName));
         this.helpMessage = helpMessage;
         registerCommand(new EditStringCommand(owner, addSuccessMessage, "add") {
@@ -40,6 +43,7 @@ public abstract class EditObjectListCommand extends MainObjectCommand<MotdTempla
                 return EditObjectListCommand.this.clear(template);
             }
         });
+        registerCommand(new ListCommand(owner, listMessage));
     }
 
     @Override

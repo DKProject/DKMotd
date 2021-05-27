@@ -41,6 +41,7 @@ public class MotdCommand extends MainObjectCommand<MotdTemplate> implements Defi
         registerCommand(new PlayerInfoCommand(owner));
         registerCommand(new NameCommand(owner,dkMotd));
         registerCommand(new DeleteCommand(owner, dkMotd));
+        registerCommand(new SupportedVersionsCommand(owner));
     }
 
     @Override
