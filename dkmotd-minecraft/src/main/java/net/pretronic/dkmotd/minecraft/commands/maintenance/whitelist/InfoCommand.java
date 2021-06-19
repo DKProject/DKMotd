@@ -13,7 +13,7 @@ public class InfoCommand extends BasicCommand {
     private final DKMotd dkMotd;
 
     public InfoCommand(ObjectOwner owner, DKMotd dkMotd) {
-        super(owner, CommandConfiguration.name("clear"));
+        super(owner, CommandConfiguration.name("info"));
         this.dkMotd = dkMotd;
     }
 
