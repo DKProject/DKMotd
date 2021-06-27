@@ -11,6 +11,7 @@ import net.pretronic.libraries.command.command.object.DefinedNotFindable;
 import net.pretronic.libraries.command.command.object.MainObjectCommand;
 import net.pretronic.libraries.command.sender.CommandSender;
 import net.pretronic.libraries.utility.interfaces.ObjectOwner;
+import org.mcnative.runtime.api.protocol.MinecraftProtocolVersion;
 
 import java.util.Collections;
 

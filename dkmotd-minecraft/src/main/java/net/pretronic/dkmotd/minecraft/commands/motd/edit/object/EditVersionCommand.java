@@ -1,5 +1,6 @@
 package net.pretronic.dkmotd.minecraft.commands.motd.edit.object;
 
+import net.pretronic.dkmotd.minecraft.commands.CommandUtil;
 import net.pretronic.libraries.message.Textable;
 import net.pretronic.libraries.utility.GeneralUtil;
 import net.pretronic.libraries.utility.interfaces.ObjectOwner;
@@ -13,7 +14,8 @@ public abstract class EditVersionCommand extends EditObjectCommand<Integer> {
     @Override
     protected Integer parse(String[] args) {
         String rawVersion = args[0];
-        if(!GeneralUtil.isNaturalNumber(rawVersion)) return null;//@Todo check for valid protocol version
-        return Integer.parseInt(rawVersion);
+        int version = CommandUtil.parseProtocolVersionNumber(rawVersion);
+        if(version == -1) return null;//@Todo check for valid protocol version
+        return version;
     }
 }
