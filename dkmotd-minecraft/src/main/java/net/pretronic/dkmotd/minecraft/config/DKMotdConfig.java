@@ -15,17 +15,17 @@ public class DKMotdConfig {
 
     public static CommandConfiguration COMMAND_MOTD = CommandConfiguration.newBuilder()
             .name("motd")
-            .permission("dkcoins.command.motd")
+            .permission("dkmotd.command.motd")
             .create();
 
     public static CommandConfiguration COMMAND_MAINTENANCE = CommandConfiguration.newBuilder()
             .name("maintenance")
-            .permission("dkcoins.command.maintenance")
+            .permission("dkmotd.command.maintenance")
             .create();
 
     public static CommandConfiguration COMMAND_JOIN_MESSAGE = CommandConfiguration.newBuilder()
             .name("joinMessage")
-            .permission("dkcoins.command.joinMessage")
+            .permission("dkmotd.command.joinMessage")
             .create();
 
     public static String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
