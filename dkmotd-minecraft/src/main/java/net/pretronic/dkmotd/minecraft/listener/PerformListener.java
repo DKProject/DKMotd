@@ -54,7 +54,7 @@ public class PerformListener {
         }
     }
 
-    @Listener(priority = EventPriority.LOW)
+    @Listener(priority = EventPriority.HIGHEST)
     public void onPostLogin(MinecraftPlayerPostLoginEvent event) {
         sendJoinMessage(event.getOnlinePlayer());
     }

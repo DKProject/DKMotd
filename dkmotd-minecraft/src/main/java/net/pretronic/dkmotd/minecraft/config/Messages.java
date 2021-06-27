@@ -9,6 +9,7 @@ public class Messages {
     public static final MessageKeyComponent ERROR_INDEX_NOT_VALID = Text.ofMessageKey("dkmotd.error.index.notValid");
     public static final MessageKeyComponent ERROR_NUMBER_NOT_VALID = Text.ofMessageKey("dkmotd.error.number.notValid");
     public static final MessageKeyComponent ERROR_DURATION_NOT_VALID = Text.ofMessageKey("dkmotd.error.duration.notValid");
+    public static final MessageKeyComponent ERROR_DATE_FORMAT_NOT_VALID = Text.ofMessageKey("dkmotd.error.dateFormat.notValid");
     public static final MessageKeyComponent ERROR_VERSION_NOT_VALID = Text.ofMessageKey("dkmotd.error.version.notValid");
     public static final MessageKeyComponent ERROR_FAVICON_NOT_VALID = Text.ofMessageKey("dkmotd.error.favicon.notValid");
     public static final MessageKeyComponent ERROR_PLAYER_NOT_FOUND = Text.ofMessageKey("dkmotd.error.player.notFound");

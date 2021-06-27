@@ -2,6 +2,7 @@ package net.pretronic.dkmotd.minecraft.commands.maintenance;
 
 import net.pretronic.dkmotd.api.DKMotd;
 import net.pretronic.dkmotd.api.maintenance.Maintenance;
+import net.pretronic.dkmotd.minecraft.config.DKMotdConfig;
 import net.pretronic.dkmotd.minecraft.config.Messages;
 import net.pretronic.libraries.command.command.BasicCommand;
 import net.pretronic.libraries.command.command.configuration.CommandConfiguration;
@@ -26,11 +27,11 @@ public class TimeoutCommand extends BasicCommand {
             return;
         }
         String rawTimeout = args[0];
-        if(!GeneralUtil.isNaturalNumber(rawTimeout)) {
-            sender.sendMessage(Messages.ERROR_NUMBER_NOT_VALID, VariableSet.create().add("value", rawTimeout));
+        long timeout = DKMotdConfig.parseDateFormat(rawTimeout);
+        if(timeout == -1) {
+            sender.sendMessage(Messages.ERROR_DATE_FORMAT_NOT_VALID, VariableSet.create().add("value", rawTimeout));
             return;
         }
-        long timeout = Long.parseLong(rawTimeout);
         Maintenance maintenance = this.dkMotd.getMaintenance();
         if(maintenance.setTimeout(timeout)) {
             sender.sendMessage(Messages.COMMAND_MAINTENANCE_TIMEOUT, VariableSet.create()

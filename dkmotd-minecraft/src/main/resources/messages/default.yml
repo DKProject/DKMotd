@@ -12,6 +12,7 @@ messages:
   dkmotd.error.number.notValid: '${dkmotd.prefix} &e{value} &cis not a valid number'
   dkmotd.error.duration.notValid: '${dkmotd.prefix} &e{value} &cis not a valid duration'
   dkmotd.error.version.notValid: '${dkmotd.prefix} &e{value} &cis not a valid version'
+  dkmotd.error.dateFormat.notValid: '${dkmotd.prefix} &e{value} &cis not a valid date format'
 
   dkmotd.error.motdTemplate.notExists: '${dkmotd.prefix} &cThe motd template &e{name} &cdoes not exists'
   dkmotd.error.motdTemplate.alreadyExists: '${dkmotd.prefix} &cThe motd template &e{template.name} &calready exists'
