@@ -51,8 +51,8 @@ public class DefaultMotdTemplateManager implements MotdTemplateManager {
     private static final MotdTemplate DEFAULT_MAINTENANCE_TEMPLATE = new DefaultMotdTemplate(null, DEFAULT_MAINTENANCE_TEMPLATE_NAME,
             "&b&lDKMotd &8|&f &a&lBetter Motd solution",
             Arrays.asList("&7Powered by Pretronic"),
-            "&7&l➜ &4&lMaintenance",
-            "&7&l➜ &4&lMaintenance",
+            "&7&l➜ &c&lMaintenance",
+            "&7&l➜ &c&lMaintenance",
             null,
             DKMOTD_LOGO_BASE64,
             Arrays.asList("&8» &7Website&8: &ehttps://pretronic.net/",
@@ -158,6 +158,9 @@ public class DefaultMotdTemplateManager implements MotdTemplateManager {
             templates.add(DEFAULT_MAINTENANCE_TEMPLATE);
 
             this.dkMotd.getStorage().set(STORAGE_MOTD_TEMPLATES, Document.newDocument(templates));
+            for (MotdTemplate template : templates) {
+                ((DefaultMotdTemplate)template).setDKMotd(dkMotd);
+            }
             return templates;
         }
         Collection<MotdTemplate> templates = new ArrayList<>(document.getAsObject(new TypeReference<Collection<DefaultMotdTemplate>>(){}));;

@@ -8,6 +8,7 @@ import net.pretronic.dkmotd.api.event.joinmessage.delete.JoinMessageTemplateDele
 import net.pretronic.dkmotd.api.event.joinmessage.delete.JoinMessageTemplateDeletedEvent;
 import net.pretronic.dkmotd.api.joinmessage.JoinMessageTemplate;
 import net.pretronic.dkmotd.api.joinmessage.JoinMessageTemplateManager;
+import net.pretronic.dkmotd.api.motd.MotdTemplate;
 import net.pretronic.dkmotd.common.DefaultDKMotd;
 import net.pretronic.dkmotd.common.event.joinmessage.active.DefaultJoinMessageTemplateActiveChangeEvent;
 import net.pretronic.dkmotd.common.event.joinmessage.active.DefaultJoinMessageTemplateActiveChangedEvent;
@@ -15,6 +16,7 @@ import net.pretronic.dkmotd.common.event.joinmessage.create.DefaultJoinMessageTe
 import net.pretronic.dkmotd.common.event.joinmessage.create.DefaultJoinMessageTemplateCreatedEvent;
 import net.pretronic.dkmotd.common.event.joinmessage.delete.DefaultJoinMessageTemplateDeleteEvent;
 import net.pretronic.dkmotd.common.event.joinmessage.delete.DefaultJoinMessageTemplateDeletedEvent;
+import net.pretronic.dkmotd.common.motd.DefaultMotdTemplate;
 import net.pretronic.libraries.document.Document;
 import net.pretronic.libraries.utility.Iterators;
 import net.pretronic.libraries.utility.annonations.Internal;
@@ -115,6 +117,9 @@ public class DefaultJoinMessageTemplateManager implements JoinMessageTemplateMan
         if(document == null) {
             Collection<JoinMessageTemplate> templates = new ArrayList<>();
             this.dkMotd.getStorage().set(STORAGE_JOIN_MESSAGE_TEMPLATES, Document.newDocument(templates));
+            for (JoinMessageTemplate template : templates) {
+                ((DefaultJoinMessageTemplate)template).setDKMotd(dkMotd);
+            }
             return templates;
         }
         Collection<JoinMessageTemplate> templates = new ArrayList<>(document.getAsObject(new TypeReference<Collection<DefaultJoinMessageTemplate>>(){}));
