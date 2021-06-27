@@ -17,7 +17,7 @@ public class DefaultDKMotd implements DKMotd {
     private final String version;
     private final DefaultMotdTemplateManager motdTemplateManager;
     private final DefaultJoinMessageTemplateManager joinMessageTemplateManager;
-    private final DefaultMaintenance maintenance;
+    private DefaultMaintenance maintenance;
     private final EventBus eventBus;
     private final DKMotdStorage storage;
 
@@ -74,5 +74,10 @@ public class DefaultDKMotd implements DKMotd {
             return maintenance;
         }
         return value.getAsObject(DefaultMaintenance.class).setDKMotd(this);
+    }
+
+    @Internal
+    public void reloadMaintenance() {
+        this.maintenance = loadMaintenance();
     }
 }

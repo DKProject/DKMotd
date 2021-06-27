@@ -4,6 +4,7 @@ import net.pretronic.dkmotd.api.DKMotd;
 import net.pretronic.dkmotd.api.joinmessage.JoinMessageTemplate;
 import net.pretronic.dkmotd.api.maintenance.Maintenance;
 import net.pretronic.dkmotd.api.motd.MotdTemplate;
+import net.pretronic.dkmotd.common.DefaultDKMotd;
 import net.pretronic.dkmotd.common.motd.DefaultMotdTemplateManager;
 import net.pretronic.dkmotd.minecraft.config.Messages;
 import net.pretronic.dkmotd.minecraft.config.Permissions;
@@ -15,6 +16,8 @@ import net.pretronic.libraries.utility.Iterators;
 import org.mcnative.runtime.api.McNative;
 import org.mcnative.runtime.api.event.player.login.MinecraftPlayerLoginEvent;
 import org.mcnative.runtime.api.event.player.login.MinecraftPlayerPostLoginEvent;
+import org.mcnative.runtime.api.event.player.settings.MinecraftPlayerSettingsChangedEvent;
+import org.mcnative.runtime.api.event.service.PluginSettingUpdateEvent;
 import org.mcnative.runtime.api.event.service.local.LocalServicePingEvent;
 import org.mcnative.runtime.api.network.component.server.ServerStatusResponse;
 import org.mcnative.runtime.api.player.OnlineMinecraftPlayer;
@@ -27,9 +30,9 @@ import java.util.Collection;
 
 public class PerformListener {
 
-    private final DKMotd dkMotd;
+    private final DefaultDKMotd dkMotd;
 
-    public PerformListener(DKMotd dkMotd) {
+    public PerformListener(DefaultDKMotd dkMotd) {
         this.dkMotd = dkMotd;
     }
 
@@ -115,6 +118,15 @@ public class PerformListener {
                 String message = GeneralUtil.getRandomItem(template.getSecondMessages());
                 player.sendMessage(message);
             }
+        }
+    }
+
+    @Listener
+    public void onPluginSettingUpdate(PluginSettingUpdateEvent event) {
+        if(event.getOwner().equalsIgnoreCase("DKMotd")) {
+            this.dkMotd.getMotdTemplateManager().reload();
+            this.dkMotd.getJoinMessageTemplateManager().reload();
+            this.dkMotd.reloadMaintenance();
         }
     }
 }

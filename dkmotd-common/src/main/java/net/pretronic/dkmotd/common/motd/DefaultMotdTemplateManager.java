@@ -68,9 +68,7 @@ public class DefaultMotdTemplateManager implements MotdTemplateManager {
         this.dkMotd = dkMotd;
         this.templates = loadTemplates();
         //@TODO Temporary
-        for (MotdTemplate template : this.templates) {
-            ((DefaultMotdTemplate)template).setDKMotd(dkMotd);
-        }
+
         this.activeTemplateName = loadActiveTemplateName();
     }
 
@@ -160,7 +158,11 @@ public class DefaultMotdTemplateManager implements MotdTemplateManager {
             this.dkMotd.getStorage().set(STORAGE_MOTD_TEMPLATES, Document.newDocument(templates));
             return templates;
         }
-        return new ArrayList<>(document.getAsObject(new TypeReference<Collection<DefaultMotdTemplate>>(){}));
+        Collection<MotdTemplate> templates = new ArrayList<>(document.getAsObject(new TypeReference<Collection<DefaultMotdTemplate>>(){}));;
+        for (MotdTemplate template : templates) {
+            ((DefaultMotdTemplate)template).setDKMotd(dkMotd);
+        }
+        return templates;
     }
 
     private String loadActiveTemplateName() {
@@ -170,5 +172,12 @@ public class DefaultMotdTemplateManager implements MotdTemplateManager {
             return DEFAULT_TEMPLATE_NAME;
         }
         return (String) value;
+    }
+
+    @Internal
+    public void reload() {
+        this.templates.clear();
+        this.templates.addAll(loadTemplates());
+        this.activeTemplateName = loadActiveTemplateName();
     }
 }

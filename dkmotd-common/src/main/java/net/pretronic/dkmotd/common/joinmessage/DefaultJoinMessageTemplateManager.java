@@ -38,10 +38,7 @@ public class DefaultJoinMessageTemplateManager implements JoinMessageTemplateMan
         this.dkMotd = dkMotd;
 
         this.templates = loadTemplates();
-        //@TODO Temporary
-        for (JoinMessageTemplate template : this.templates) {
-            ((DefaultJoinMessageTemplate)template).setDKMotd(dkMotd);
-        }
+
         this.activeTemplateName = loadActiveTemplateName();
     }
 
@@ -120,7 +117,11 @@ public class DefaultJoinMessageTemplateManager implements JoinMessageTemplateMan
             this.dkMotd.getStorage().set(STORAGE_JOIN_MESSAGE_TEMPLATES, Document.newDocument(templates));
             return templates;
         }
-        return new ArrayList<>(document.getAsObject(new TypeReference<Collection<DefaultJoinMessageTemplate>>(){}));
+        Collection<JoinMessageTemplate> templates = new ArrayList<>(document.getAsObject(new TypeReference<Collection<DefaultJoinMessageTemplate>>(){}));
+        for (JoinMessageTemplate template : templates) {
+            ((DefaultJoinMessageTemplate)template).setDKMotd(dkMotd);
+        }
+        return templates;
     }
 
     private String loadActiveTemplateName() {
@@ -129,5 +130,12 @@ public class DefaultJoinMessageTemplateManager implements JoinMessageTemplateMan
             return null;
         }
         return (String) value;
+    }
+
+    @Internal
+    public void reload() {
+        this.templates.clear();
+        this.templates.addAll(loadTemplates());
+        this.activeTemplateName = loadActiveTemplateName();
     }
 }
