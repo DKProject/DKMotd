@@ -1,6 +1,7 @@
 package net.pretronic.dkmotd.minecraft.config;
 
 import net.pretronic.libraries.command.command.configuration.CommandConfiguration;
+import net.pretronic.libraries.document.annotations.DocumentIgnored;
 import net.pretronic.libraries.document.annotations.DocumentKey;
 import net.pretronic.libraries.document.annotations.OnDocumentConfigurationLoad;
 
@@ -12,17 +13,17 @@ import java.time.temporal.TemporalField;
 
 public class DKMotdConfig {
 
-    public static final CommandConfiguration COMMAND_MOTD = CommandConfiguration.newBuilder()
+    public static CommandConfiguration COMMAND_MOTD = CommandConfiguration.newBuilder()
             .name("motd")
             .permission("dkcoins.command.motd")
             .create();
 
-    public static final CommandConfiguration COMMAND_MAINTENANCE = CommandConfiguration.newBuilder()
+    public static CommandConfiguration COMMAND_MAINTENANCE = CommandConfiguration.newBuilder()
             .name("maintenance")
             .permission("dkcoins.command.maintenance")
             .create();
 
-    public static final CommandConfiguration COMMAND_JOIN_MESSAGE = CommandConfiguration.newBuilder()
+    public static CommandConfiguration COMMAND_JOIN_MESSAGE = CommandConfiguration.newBuilder()
             .name("joinMessage")
             .permission("dkcoins.command.joinMessage")
             .create();
@@ -31,7 +32,8 @@ public class DKMotdConfig {
 
     @DocumentKey("date.format.input")
     private static String DATE_FORMAT_INPUT0 = "yyyy-MM-dd[[ ]['T']HH:mm[:ss][XXX]]";
-    private static transient SimpleDateFormat DATE_FORMAT_INPUT = null;
+    @DocumentIgnored
+    private static SimpleDateFormat DATE_FORMAT_INPUT = null;
 
     @OnDocumentConfigurationLoad
     public static void onLoad() {
