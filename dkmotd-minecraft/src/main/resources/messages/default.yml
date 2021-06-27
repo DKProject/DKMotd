@@ -8,11 +8,10 @@ meta:
 messages:
   dkmotd.prefix: '&8» &bDKMotd &8|&f'
 
-
-  dkmotd.error.index.notValid: '${dkmotd.prefix} &e{value} is not a valid index'
-  dkmotd.error.number.notValid: '${dkmotd.prefix} &e{value} is not a valid number'
-  dkmotd.error.duration.notValid: '${dkmotd.prefix} &e{value} is not a valid duration'
-  dkmotd.error.version.notValid: '${dkmotd.prefix} &e{value} is not a valid version'
+  dkmotd.error.index.notValid: '${dkmotd.prefix} &e{value} &cis not a valid index'
+  dkmotd.error.number.notValid: '${dkmotd.prefix} &e{value} &cis not a valid number'
+  dkmotd.error.duration.notValid: '${dkmotd.prefix} &e{value} &cis not a valid duration'
+  dkmotd.error.version.notValid: '${dkmotd.prefix} &e{value} &cis not a valid version'
 
   dkmotd.error.motdTemplate.notExists: '${dkmotd.prefix} &cThe motd template &e{name} &cdoes not exists'
   dkmotd.error.motdTemplate.alreadyExists: '${dkmotd.prefix} &cThe motd template &e{template.name} &calready exists'
