@@ -60,19 +60,19 @@ messages:
   dkmotd.command.motd.delete: '${dkmotd.prefix} &7You have deleted the motd template &e{template.name}'
 
   dkmotd.command.motd.info: '${dkmotd.prefix} &7Motd template &e{template.name} &7info
-  &7Base line&8: &e{template.baseLine}
-  &7Version text&8: &e{template.versionText}
-  &7Wrong version text&8: &e{template.wrongVersionText}
-  &7Supported versions&8: @for("version" in {template.supportedVersions}, ${dkmotd.command.motd.info.supportedVersions},",", ",")
-  &7Favicon&8: &e{template.favicon}
-  &7Second lines&8: @for("line" in {template.secondLines}, ${dkmotd.command.motd.info.secondLines},"\n", "\n")
-  &7Player info&8: @for("line" in {template.playerInfo}, ${dkmotd.command.motd.info.playerInfo},"\n", "\n")'
-  dkmotd.command.motd.info.secondLines: '&8» &e{line}'
-  dkmotd.command.motd.info.supportedVersions: '&e{version}'
-  dkmotd.command.motd.info.playerInfo: '&8» &e{line}'
+  &8» &7Base line&8: &e{template.baseLine}
+  &8» &7Version text&8: &e{template.versionText}
+  &8» &7Wrong version text&8: &e{template.wrongVersionText}
+  &8» &7Supported versions&8: @for("version" in {template.supportedVersions}, ${dkmotd.command.motd.info.supportedVersions},",", ",")
+  &8» &7Favicon&8: &e{template.favicon}
+  &8» &7Second lines&8: @for("line" in {template.secondLines}, ${dkmotd.command.motd.info.secondLines},"\n", "\n")
+  &8» &7Player info&8: @for("line" in {template.playerInfo}, ${dkmotd.command.motd.info.playerInfo},"\n", "\n")'
+  dkmotd.command.motd.info.secondLines: ' &8- &e{line}'
+  dkmotd.command.motd.info.supportedVersions: ' &8- &e{version}'
+  dkmotd.command.motd.info.playerInfo: ' &8- &e{line}'
 
   dkmotd.command.motd.list: '${dkmotd.prefix} &7Motd templates&8: @for("template" in {templates}, ${dkmotd.command.motd.list.loop},"\n", "\n")'
-  dkmotd.command.motd.list.loop: '&8- &e{template.name}'
+  dkmotd.command.motd.list.loop: ' &8- &e{template.name}'
 
   dkmotd.command.motd.name: '${dkmotd.prefix} &7You have changed the name to &e{template.name}'
   dkmotd.command.motd.baseLine: '${dkmotd.prefix} &7You have changed the baseLine to &e{template.baseLine}'
@@ -105,8 +105,8 @@ messages:
   dkmotd.command.maintenance.active.off: '${dkmotd.prefix} &7You have turned &coff &7the maintenance'
   dkmotd.command.maintenance.timeout: '${dkmotd.prefix} &7You have changed the maintenance timeout to &e{maintenance.formattedTimeout}'
   dkmotd.command.maintenance.info: '${dkmotd.prefix} &cMaintenance info
-  &7Active&8: &e{maintenance.active}
-  &7Timeout&8: &e{maintenance.formattedTimeout}'
+  &8» &7Active&8: &e{maintenance.active}
+  &8» &7Timeout&8: &e{maintenance.formattedTimeout}'
 
 
   dkmotd.command.joinMessage.help: '${dkmotd.prefix} &cInvalid usage of joinmessage command&8:
@@ -123,12 +123,12 @@ messages:
   dkmotd.command.joinMessage.delete: '${dkmotd.prefix} &7You have deleted the join message template &e{template.name}'
 
   dkmotd.command.joinMessage.info: '${dkmotd.prefix} &7Join message template &e{template.name} &7info
-  &7Base message&8: &e{template.baseMessage}
-  &7Second messages&8: @for("line" in {template.secondMessages}, ${dkmotd.command.joinMessage.info.secondMessages},"\n", "\n")'
-  dkmotd.command.joinMessage.info.secondMessages: '&8» &e{line}'
+  &8» &7Base message&8: &e{template.baseMessage}
+  &8» &7Second messages&8: @for("line" in {template.secondMessages}, ${dkmotd.command.joinMessage.info.secondMessages},"\n", "\n")'
+  dkmotd.command.joinMessage.info.secondMessages: ' &8- &e{line}'
 
   dkmotd.command.joinMessage.list: '${dkmotd.prefix} &7Join message templates&8: @for("template" in {templates}, ${dkmotd.command.joinMessage.list.loop},"\n", "\n")'
-  dkmotd.command.joinMessage.list.loop: '&8- &e{template.name}'
+  dkmotd.command.joinMessage.list.loop: ' &8- &e{template.name}'
 
   dkmotd.command.joinMessage.active: '${dkmotd.prefix} &7You have changed the active join message template to &e{template.name}'
 
