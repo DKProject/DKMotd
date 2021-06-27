@@ -35,7 +35,6 @@ public class MinecraftDKMotdStorage implements DKMotdStorage {
     @Override
     public void set(String key, Object value) {
         if(value instanceof Document) value = DocumentFileType.JSON.getWriter().write((Document) value, false);
-        System.out.println("DEBUG: DKMotd storage set " + key + ":" + value);
         plugin.setSetting(key, value);
     }
 }
