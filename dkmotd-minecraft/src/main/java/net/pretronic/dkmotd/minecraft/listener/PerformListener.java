@@ -72,7 +72,7 @@ public class PerformListener {
             }
 
             Collection<MinecraftProtocolVersion> supportedVersions = null;
-            if(template.getSupportedVersions() != null) {
+            if(template.getSupportedVersions() != null && !template.getSupportedVersions().isEmpty()) {
                 supportedVersions = Iterators.map(template.getSupportedVersions(), version -> MinecraftProtocolVersion.of(MinecraftEdition.JAVA, version));
             } else {
                 supportedVersions = McNative.getInstance().getPlatform().getJoinableProtocolVersions();
