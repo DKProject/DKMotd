@@ -28,7 +28,7 @@ public class DKMotdConfig {
             .permission("dkmotd.command.joinMessage")
             .create();
 
-    public static String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
+    public static String DATE_FORMAT_DISPLAY = "yyyy-MM-dd HH:mm:ss";
 
     @DocumentKey("date.format.input")
     private static String DATE_FORMAT_INPUT0 = "yyyy-MM-dd[[ ]['T']HH:mm[:ss][XXX]]";

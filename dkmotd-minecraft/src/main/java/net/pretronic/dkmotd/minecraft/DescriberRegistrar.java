@@ -26,7 +26,7 @@ public class DescriberRegistrar {
 
         VariableDescriber<DefaultMaintenance> maintenanceDescriber = VariableDescriberRegistry.registerDescriber(DefaultMaintenance.class);
         maintenanceDescriber.registerFunction("formattedTimeout", maintenance -> {
-            SimpleDateFormat format = new SimpleDateFormat(DKMotdConfig.DATE_FORMAT);
+            SimpleDateFormat format = new SimpleDateFormat(DKMotdConfig.DATE_FORMAT_DISPLAY);
             return maintenance.getTimeout() == -1 ? "no timeout" : format.format(new Date(maintenance.getTimeout()));
         });
         maintenanceDescriber.registerFunction("reason", maintenance -> maintenance.getReason() == null ? "none"
