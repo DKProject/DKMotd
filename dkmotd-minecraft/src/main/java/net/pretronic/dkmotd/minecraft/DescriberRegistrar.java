@@ -22,7 +22,7 @@ public class DescriberRegistrar {
         motdDescriber.registerFunction("baseLine", template -> template.getBaseLine() == null ? "unset" : template.getBaseLine());
         motdDescriber.registerFunction("versionText", template -> template.getVersionText() == null ? "unset" : template.getVersionText());
         motdDescriber.registerFunction("wrongVersionText", template -> template.getWrongVersionText() == null ? "unset" : template.getWrongVersionText());
-        motdDescriber.registerFunction("favicon", template -> template.getFavicon() == null ? "unset" : template.getFavicon());
+        motdDescriber.registerFunction("favicon", template -> template.getFavicon() == null ? "unset" : "set");
 
         VariableDescriber<DefaultMaintenance> maintenanceDescriber = VariableDescriberRegistry.registerDescriber(DefaultMaintenance.class);
         maintenanceDescriber.registerFunction("formattedTimeout", maintenance -> {
