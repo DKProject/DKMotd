@@ -119,7 +119,7 @@ public class PerformListener {
             }
             if(template.getSecondMessages() != null && !template.getSecondMessages().isEmpty()) {
                 String message = GeneralUtil.getRandomItem(template.getSecondMessages());
-                player.sendMessage(message);
+                player.sendMessage(Text.parse(message));
             }
         }
     }
