@@ -41,18 +41,21 @@ messages:
   &7/motd <name> secondlines add <line>
   &7/motd <name> secondlines remove <index>
   &7/motd <name> secondlines set <line>
+  &7/motd <name> secondlines modify <index> <line>
   &7/motd <name> secondlines clear'
 
   dkmotd.command.motd.playerInfo.help: '${dkmotd.prefix} &cInvalid usage of motd playerInfo command&8:
   &7/motd <name> playerInfo add <line>
   &7/motd <name> playerInfo remove <index>
   &7/motd <name> playerInfo set <line>
+  &7/motd <name> playerInfo modify <index> <line>
   &7/motd <name> playerInfo clear'
 
   dkmotd.command.motd.supportedVersions.help: '${dkmotd.prefix} &cInvalid usage of motd supportedVersions command&8:
   &7/motd <name> supportedVersions add <version>
   &7/motd <name> supportedVersions remove <version>
   &7/motd <name> supportedVersions set <version>
+  &7/motd <name> supportedVersions modify <index> <version>
   &7/motd <name> supportedVersions clear'
 
   dkmotd.command.motd.create: '${dkmotd.prefix} &7You have created the motd template &e{template.name}'
@@ -60,11 +63,11 @@ messages:
   dkmotd.command.motd.delete: '${dkmotd.prefix} &7You have deleted the motd template &e{template.name}'
 
   dkmotd.command.motd.info: '${dkmotd.prefix} &7Motd template &e{template.name} &7info
-  &8» &7Base line&8: &e{template.baseLine}
-  &8» &7Version text&8: &e{template.versionText}
-  &8» &7Wrong version text&8: &e{template.wrongVersionText}
+  &8» &7Base line&8: &e{template.baseLine} !["&8[&bModify&8]"]("suggest:///motd {template.name} baseLine {template.baseLine}")
+  &8» &7Version text&8: &e{template.versionText} !["&8[&bModify&8]"]("suggest:///motd {template.name} versionText {template.versionText}")
+  &8» &7Wrong version text&8: &e{template.wrongVersionText} !["&8[&bModify&8]"]("suggest:///motd {template.name} wrongVersionText {template.wrongVersionText}")
   &8» &7Supported versions&8: @for("version" in {template.supportedVersions}, ${dkmotd.command.motd.info.supportedVersions},",", ",")
-  &8» &7Favicon&8: &e{template.favicon}
+  &8» &7Favicon&8: &e{template.favicon} !["&8[&bModify&8]"]("suggest:///motd {template.name} favicon")
   &8» &7Second lines&8: @for("line" in {template.secondLines}, ${dkmotd.command.motd.info.secondLines},"\n", "\n")
   &8» &7Player info&8: @for("line" in {template.playerInfo}, ${dkmotd.command.motd.info.playerInfo},"\n", "\n")'
   dkmotd.command.motd.info.secondLines: ' &8{position} &e{line} !["&8[&cRemove&8]"]("run:///motd {template.name} secondLines remove {position}")'
@@ -82,11 +85,13 @@ messages:
 
   dkmotd.command.motd.secondLines.add: '${dkmotd.prefix} &7You have added a second line'
   dkmotd.command.motd.secondLines.set: '${dkmotd.prefix} &7You have set the second lines'
+  dkmotd.command.motd.secondLines.modify: '${dkmotd.prefix} &7You have modified the second lines'
   dkmotd.command.motd.secondLines.remove: '${dkmotd.prefix} &7You have removed a second line'
   dkmotd.command.motd.secondLines.clear: '${dkmotd.prefix} &7You have cleared the second lines'
 
   dkmotd.command.motd.playerInfo.add: '${dkmotd.prefix} &7You have added a player info'
   dkmotd.command.motd.playerInfo.set: '${dkmotd.prefix} &7You have set the player info'
+  dkmotd.command.motd.playerInfo.modify: '${dkmotd.prefix} &7You have modified the player info'
   dkmotd.command.motd.playerInfo.remove: '${dkmotd.prefix} &7You have removed a player info'
   dkmotd.command.motd.playerInfo.clear: '${dkmotd.prefix} &7You have cleared the player info'
 

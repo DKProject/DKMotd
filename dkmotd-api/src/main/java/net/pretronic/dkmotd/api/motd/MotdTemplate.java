@@ -21,6 +21,8 @@ public interface MotdTemplate {
 
     boolean addSecondLine(String line);
 
+    boolean modifySecondLine(int index, String line);
+
     boolean removeSecondLine(int index);
 
     boolean clearSecondLines();
@@ -57,6 +59,8 @@ public interface MotdTemplate {
     boolean setPlayerInfo(List<String> playerInfo);
 
     boolean addPlayerInfo(String playerInfo);
+
+    boolean modifyPlayerInfo(int index, String playerInfo);
 
     boolean removePlayerInfo(int index);
 

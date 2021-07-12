@@ -48,12 +48,14 @@ public class Messages {
     public static final MessageKeyComponent COMMAND_MOTD_SECONDLINES_ADD = Text.ofMessageKey("dkmotd.command.motd.secondLines.add");
     public static final MessageKeyComponent COMMAND_MOTD_SECONDLINES_REMOVE = Text.ofMessageKey("dkmotd.command.motd.secondLines.remove");
     public static final MessageKeyComponent COMMAND_MOTD_SECONDLINES_SET = Text.ofMessageKey("dkmotd.command.motd.secondLines.set");
+    public static final MessageKeyComponent COMMAND_MOTD_SECONDLINES_MODIFY = Text.ofMessageKey("dkmotd.command.motd.secondLines.modify");
     public static final MessageKeyComponent COMMAND_MOTD_SECONDLINES_CLEAR = Text.ofMessageKey("dkmotd.command.motd.secondLines.clear");
     public static final MessageKeyComponent COMMAND_MOTD_SECONDLINES_LIST = Text.ofMessageKey("dkmotd.command.motd.secondLines.list");
 
     public static final MessageKeyComponent COMMAND_MOTD_PLAYERINFO_ADD = Text.ofMessageKey("dkmotd.command.motd.playerInfo.add");
     public static final MessageKeyComponent COMMAND_MOTD_PLAYERINFO_REMOVE = Text.ofMessageKey("dkmotd.command.motd.playerInfo.remove");
     public static final MessageKeyComponent COMMAND_MOTD_PLAYERINFO_SET = Text.ofMessageKey("dkmotd.command.motd.playerInfo.set");
+    public static final MessageKeyComponent COMMAND_MOTD_PLAYERINFO_MODIFY = Text.ofMessageKey("dkmotd.command.motd.playerInfo.modify");
     public static final MessageKeyComponent COMMAND_MOTD_PLAYERINFO_CLEAR = Text.ofMessageKey("dkmotd.command.motd.playerInfo.clear");
     public static final MessageKeyComponent COMMAND_MOTD_PLAYERINFO_LIST = Text.ofMessageKey("dkmotd.command.motd.playerInfo.list");
 

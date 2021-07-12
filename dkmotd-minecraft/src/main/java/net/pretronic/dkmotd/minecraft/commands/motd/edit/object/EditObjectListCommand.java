@@ -63,4 +63,5 @@ public abstract class EditObjectListCommand extends MainObjectCommand<MotdTempla
     protected abstract boolean set(MotdTemplate template, String text);
 
     protected abstract boolean clear(MotdTemplate template);
+
 }
