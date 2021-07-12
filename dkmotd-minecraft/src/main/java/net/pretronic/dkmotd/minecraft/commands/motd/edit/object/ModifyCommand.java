@@ -32,7 +32,7 @@ public abstract class ModifyCommand extends ObjectCommand<MotdTemplate> {
             return;
         }
         int index = Integer.parseInt(rawIndex)-1;
-        String value = CommandUtil.readStringFromArguments(args, 0);
+        String value = CommandUtil.readStringFromArguments(args, 1);
         if(change(template, index, value)) {
             sender.sendMessage(this.successMessage, VariableSet.create()
                     .addDescribed("template", template));
