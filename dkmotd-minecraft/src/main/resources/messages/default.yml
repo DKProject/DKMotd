@@ -67,9 +67,9 @@ messages:
   &8» &7Favicon&8: &e{template.favicon}
   &8» &7Second lines&8: @for("line" in {template.secondLines}, ${dkmotd.command.motd.info.secondLines},"\n", "\n")
   &8» &7Player info&8: @for("line" in {template.playerInfo}, ${dkmotd.command.motd.info.playerInfo},"\n", "\n")'
-  dkmotd.command.motd.info.secondLines: ' &8- &e{line}'
-  dkmotd.command.motd.info.supportedVersions: ' &8- &e{version}'
-  dkmotd.command.motd.info.playerInfo: ' &8- &e{line}'
+  dkmotd.command.motd.info.secondLines: ' &8{position} &e{line} !["&8[&cRemove&8]"]("run:///motd {template.name} secondLines remove {position}")'
+  dkmotd.command.motd.info.supportedVersions: ' &8{position} &e{version} !["&8[&cRemove&8]"]("run:///motd {template.name} supportedVersions remove {position}")'
+  dkmotd.command.motd.info.playerInfo: ' &8{position} &e{line} !["&8[&cRemove&8]"]("run:///motd {template.name} playerInfo remove {position}")'
 
   dkmotd.command.motd.list: '${dkmotd.prefix} &7Motd templates&8: @for("template" in {templates}, ${dkmotd.command.motd.list.loop},"\n", "\n")'
   dkmotd.command.motd.list.loop: ' &8- &e{template.name}'
@@ -125,7 +125,7 @@ messages:
   dkmotd.command.joinMessage.info: '${dkmotd.prefix} &7Join message template &e{template.name} &7info
   &8» &7Base message&8: &e{template.baseMessage}
   &8» &7Second messages&8: @for("line" in {template.secondMessages}, ${dkmotd.command.joinMessage.info.secondMessages},"\n", "\n")'
-  dkmotd.command.joinMessage.info.secondMessages: ' &8- &e{line}'
+  dkmotd.command.joinMessage.info.secondMessages: ' &8- &e{line} !["&8[&cRemove&8]"]("run:///joinmessage {template.name} secondMessages remove {position}")'
 
   dkmotd.command.joinMessage.list: '${dkmotd.prefix} &7Join message templates&8: @for("template" in {templates}, ${dkmotd.command.joinMessage.list.loop},"\n", "\n")'
   dkmotd.command.joinMessage.list.loop: ' &8- &e{template.name}'

@@ -30,7 +30,7 @@ public abstract class RemoveCommand extends ObjectCommand<MotdTemplate> {
             sender.sendMessage(Messages.ERROR_INDEX_NOT_VALID, VariableSet.create().add("index", rawIndex));
             return;
         }
-        int index = Integer.parseInt(rawIndex);
+        int index = Integer.parseInt(rawIndex)-1;
         if(remove(template, index)) {
             sender.sendMessage(this.successMessage, VariableSet.create()
                     .addDescribed("template", template));
