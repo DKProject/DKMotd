@@ -23,6 +23,7 @@ import net.pretronic.libraries.utility.annonations.Internal;
 import net.pretronic.libraries.utility.reflect.TypeReference;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -30,6 +31,8 @@ public class DefaultJoinMessageTemplateManager implements JoinMessageTemplateMan
 
     private static final String STORAGE_JOIN_MESSAGE_TEMPLATES = "JoinMessageTemplates";
     private static final String STORAGE_ACTIVE_JOIN_MESSAGE_TEMPLATE = "ActiveJoinMessageTemplate";
+
+    private static final JoinMessageTemplate DEFAULT_TEMPLATE = new DefaultJoinMessageTemplate(null, "default", "&cWelcome to this server&8. &cUse /joinmessage to change this message", null);
 
     private final DefaultDKMotd dkMotd;
 
@@ -116,6 +119,7 @@ public class DefaultJoinMessageTemplateManager implements JoinMessageTemplateMan
         Document document = this.dkMotd.getStorage().get(STORAGE_JOIN_MESSAGE_TEMPLATES);
         if(document == null) {
             Collection<JoinMessageTemplate> templates = new ArrayList<>();
+            templates.add(DEFAULT_TEMPLATE);
             this.dkMotd.getStorage().set(STORAGE_JOIN_MESSAGE_TEMPLATES, Document.newDocument(templates));
             for (JoinMessageTemplate template : templates) {
                 ((DefaultJoinMessageTemplate)template).setDKMotd(dkMotd);
