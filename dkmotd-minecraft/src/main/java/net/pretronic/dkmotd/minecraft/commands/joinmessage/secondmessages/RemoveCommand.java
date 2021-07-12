@@ -27,7 +27,7 @@ public class RemoveCommand extends ObjectCommand<JoinMessageTemplate> {
             return;
         }
         int index = Integer.parseInt(rawIndex)-1;
-        if(index >= template.getSecondMessages().size()) {
+        if(template.getSecondMessages() != null && index >= template.getSecondMessages().size()) {
             sender.sendMessage(Messages.ERROR_INDEX_NOT_VALID, VariableSet.create().add("index", rawIndex));
             return;
         }

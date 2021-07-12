@@ -33,7 +33,7 @@ public class PlayerInfoCommand extends EditObjectListCommand {
 
     @Override
     protected boolean canRemove(MotdTemplate template, int index) {
-        return template.getPlayerInfo().size() > index;
+        return template.getPlayerInfo() != null && template.getPlayerInfo().size() > index;
     }
 
     @Override
