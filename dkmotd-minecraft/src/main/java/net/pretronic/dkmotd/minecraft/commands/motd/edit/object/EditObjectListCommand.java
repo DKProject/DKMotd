@@ -36,6 +36,11 @@ public abstract class EditObjectListCommand extends MainObjectCommand<MotdTempla
             protected boolean remove(MotdTemplate template, int index) {
                 return EditObjectListCommand.this.remove(template, index);
             }
+
+            @Override
+            protected boolean canRemove(MotdTemplate template, int index) {
+                return EditObjectListCommand.this.canRemove(template, index);
+            }
         });
         registerCommand(new ClearCommand(owner, clearSuccessMessage) {
             @Override
@@ -59,6 +64,8 @@ public abstract class EditObjectListCommand extends MainObjectCommand<MotdTempla
     protected abstract boolean add(MotdTemplate template, String text);
 
     protected abstract boolean remove(MotdTemplate template, int index);
+
+    protected abstract boolean canRemove(MotdTemplate template, int index);
 
     protected abstract boolean set(MotdTemplate template, String text);
 

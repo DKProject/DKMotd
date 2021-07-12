@@ -32,6 +32,11 @@ public class SecondLinesCommand extends EditObjectListCommand {
     }
 
     @Override
+    protected boolean canRemove(MotdTemplate template, int index) {
+        return template.getSecondLines().size() > index;
+    }
+
+    @Override
     protected boolean set(MotdTemplate template, String text) {
         return template.setSecondsLines(Collections.singletonList(text));
     }
