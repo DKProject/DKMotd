@@ -33,6 +33,7 @@ public class DescriberRegistrar {
                 : Text.translateAlternateColorCodes('&', maintenance.getReason()));
         maintenanceDescriber.registerFunction("formattedRemaining", maintenance -> DurationProcessor.getStandard().format(maintenance.getRemaining()));
         maintenanceDescriber.registerFunction("whitelist", maintenance -> Iterators.map(maintenance.getWhitelist(), uniqueId -> McNative.getInstance().getPlayerManager().getPlayer(uniqueId)));
+        maintenanceDescriber.registerFunction("active", DefaultMaintenance::isActive);
 
         VariableDescriber<DefaultJoinMessageTemplate> joinMessageDescriber = VariableDescriberRegistry.registerDescriber(DefaultJoinMessageTemplate.class);
         joinMessageDescriber.registerFunction("name", template -> template.getName() == null ? "unset" : template.getName());

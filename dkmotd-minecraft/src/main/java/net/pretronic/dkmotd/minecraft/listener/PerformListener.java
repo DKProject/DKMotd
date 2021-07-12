@@ -1,6 +1,8 @@
 package net.pretronic.dkmotd.minecraft.listener;
 
 import net.pretronic.dkmotd.api.DKMotd;
+import net.pretronic.dkmotd.api.event.maintenance.active.MaintenanceActiveChangeEvent;
+import net.pretronic.dkmotd.api.event.maintenance.active.MaintenanceActiveChangedEvent;
 import net.pretronic.dkmotd.api.joinmessage.JoinMessageTemplate;
 import net.pretronic.dkmotd.api.maintenance.Maintenance;
 import net.pretronic.dkmotd.api.motd.MotdTemplate;
@@ -20,6 +22,7 @@ import org.mcnative.runtime.api.event.player.settings.MinecraftPlayerSettingsCha
 import org.mcnative.runtime.api.event.service.PluginSettingUpdateEvent;
 import org.mcnative.runtime.api.event.service.local.LocalServicePingEvent;
 import org.mcnative.runtime.api.network.component.server.ServerStatusResponse;
+import org.mcnative.runtime.api.player.ConnectedMinecraftPlayer;
 import org.mcnative.runtime.api.player.OnlineMinecraftPlayer;
 import org.mcnative.runtime.api.protocol.MinecraftEdition;
 import org.mcnative.runtime.api.protocol.MinecraftProtocolVersion;
@@ -127,6 +130,20 @@ public class PerformListener {
             this.dkMotd.getMotdTemplateManager().reload();
             this.dkMotd.getJoinMessageTemplateManager().reload();
             this.dkMotd.reloadMaintenance();
+        }
+    }
+
+    @Listener
+    public void onMaintenanceActiveChanged(MaintenanceActiveChangedEvent event) {
+        if(event.getNewActive()) {
+            for (ConnectedMinecraftPlayer connectedPlayer : McNative.getInstance().getLocal().getConnectedPlayers()) {
+                if(!connectedPlayer.hasPermission(Permissions.MAINTENANCE_BYPASS)) {
+                    MessageComponent<?> cancelMessage = event.getMaintenance().hasTimeout()
+                            ? Messages.MAINTENANCE_MESSAGE_TIMEOUT
+                            : Messages.MAINTENANCE_MESSAGE_PERMANENT;
+                    connectedPlayer.kick(cancelMessage);
+                }
+            }
         }
     }
 }

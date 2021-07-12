@@ -105,6 +105,7 @@ messages:
   &7/maintenance active
   &7/maintenance info
   &7/maintenance timeout <timeout>
+  &7/maintenance reason <reason>
   &7/maintenance duration <duration>'
   dkmotd.command.maintenance.active.on: '${dkmotd.prefix} &7You have turned &aon &7the maintenance'
   dkmotd.command.maintenance.active.off: '${dkmotd.prefix} &7You have turned &coff &7the maintenance'
@@ -150,3 +151,18 @@ messages:
   dkmotd.command.joinMessage.secondMessages.set: '${dkmotd.prefix} &7You have set the second messages'
   dkmotd.command.joinMessage.secondMessages.remove: '${dkmotd.prefix} &7You have removed a second message'
   dkmotd.command.joinMessage.secondMessages.clear: '${dkmotd.prefix} &7You have cleared the second messages'
+
+  dkmotd.maintenance.message.timeout: '&e&lexample.net&r
+  &e
+  &cThis server is currently in maintenance
+  &3Reason&8: &4&l{maintenance.reason}
+  &e
+  &3Remaining time&8: &e{formattedRemaining}
+  &e
+  &aFor more information look at &eforum.example.net'
+  dkmotd.maintenance.message.permanent: '&e&lexample.net&r
+  &e
+  &cThis server is currently in maintenance
+  &3Reason&8: &4&l{maintenance.reason}
+  &e
+  &aFor more information look at &eforum.example.net'
