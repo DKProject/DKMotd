@@ -157,7 +157,7 @@ messages:
   &cThis server is currently in maintenance
   &3Reason&8: &4&l{maintenance.reason}
   &e
-  &3Remaining time&8: &e{formattedRemaining}
+  &3Remaining time&8: &e{maintenance.formattedRemaining}
   &e
   &aFor more information look at &eforum.example.net'
   dkmotd.maintenance.message.permanent: '&e&lexample.net&r

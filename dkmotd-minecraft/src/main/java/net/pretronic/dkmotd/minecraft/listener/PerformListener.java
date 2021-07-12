@@ -141,7 +141,7 @@ public class PerformListener {
                     MessageComponent<?> cancelMessage = event.getMaintenance().hasTimeout()
                             ? Messages.MAINTENANCE_MESSAGE_TIMEOUT
                             : Messages.MAINTENANCE_MESSAGE_PERMANENT;
-                    connectedPlayer.kick(cancelMessage);
+                    connectedPlayer.kick(cancelMessage, VariableSet.create().addDescribed("maintenance", event.getMaintenance()));
                 }
             }
         }
