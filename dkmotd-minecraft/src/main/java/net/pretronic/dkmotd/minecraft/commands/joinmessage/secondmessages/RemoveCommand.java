@@ -1,7 +1,6 @@
 package net.pretronic.dkmotd.minecraft.commands.joinmessage.secondmessages;
 
 import net.pretronic.dkmotd.api.joinmessage.JoinMessageTemplate;
-import net.pretronic.dkmotd.minecraft.commands.CommandUtil;
 import net.pretronic.dkmotd.minecraft.config.Messages;
 import net.pretronic.libraries.command.command.configuration.CommandConfiguration;
 import net.pretronic.libraries.command.command.object.ObjectCommand;
@@ -27,7 +26,11 @@ public class RemoveCommand extends ObjectCommand<JoinMessageTemplate> {
             sender.sendMessage(Messages.ERROR_INDEX_NOT_VALID, VariableSet.create().add("index", rawIndex));
             return;
         }
-        int index = Integer.parseInt(rawIndex);
+        int index = Integer.parseInt(rawIndex)-1;
+        if(template.getSecondMessages() != null && index >= template.getSecondMessages().size()) {
+            sender.sendMessage(Messages.ERROR_INDEX_NOT_VALID, VariableSet.create().add("index", rawIndex));
+            return;
+        }
         if(template.removeSecondMessage(index)) {
             sender.sendMessage(Messages.COMMAND_JOINMESSAGE_SECONDMESSAGES_REMOVE, VariableSet.create()
                     .addDescribed("template", template));

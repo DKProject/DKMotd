@@ -1,6 +1,5 @@
 package net.pretronic.dkmotd.minecraft.commands.motd;
 
-import net.pretronic.dkmotd.api.DKMotd;
 import net.pretronic.dkmotd.api.motd.MotdTemplate;
 import net.pretronic.dkmotd.common.DefaultDKMotd;
 import net.pretronic.dkmotd.minecraft.commands.motd.edit.*;
@@ -8,15 +7,20 @@ import net.pretronic.dkmotd.minecraft.config.Messages;
 import net.pretronic.libraries.command.command.configuration.CommandConfiguration;
 import net.pretronic.libraries.command.command.object.DefinedNotFindable;
 import net.pretronic.libraries.command.command.object.MainObjectCommand;
+import net.pretronic.libraries.command.command.object.ObjectCompletable;
 import net.pretronic.libraries.command.command.object.ObjectNotFindable;
 import net.pretronic.libraries.command.sender.CommandSender;
 import net.pretronic.libraries.message.bml.variable.VariableSet;
+import net.pretronic.libraries.utility.Iterators;
 import net.pretronic.libraries.utility.annonations.NotNull;
 import net.pretronic.libraries.utility.interfaces.ObjectOwner;
+import org.mcnative.runtime.api.player.MinecraftPlayer;
 
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 
-public class MotdCommand extends MainObjectCommand<MotdTemplate> implements DefinedNotFindable<MotdTemplate>, ObjectNotFindable {
+public class MotdCommand extends MainObjectCommand<MotdTemplate> implements DefinedNotFindable<MotdTemplate>, ObjectNotFindable, ObjectCompletable {
 
     private final DefaultDKMotd dkMotd;
 
@@ -42,6 +46,7 @@ public class MotdCommand extends MainObjectCommand<MotdTemplate> implements Defi
         registerCommand(new PlayerInfoCommand(owner));
         registerCommand(new NameCommand(owner,dkMotd));
         registerCommand(new DeleteCommand(owner, dkMotd));
+        registerCommand(new SupportedVersionsCommand(owner));
     }
 
     @Override
@@ -69,5 +74,16 @@ public class MotdCommand extends MainObjectCommand<MotdTemplate> implements Defi
             commandSender.sendMessage(Messages.ERROR_MOTD_TEMPLATE_NOT_EXISTS, VariableSet.create()
                     .add("name", command));
         }
+    }
+
+    @Override
+    public Collection<String> complete(CommandSender sender, String name) {
+        if(sender instanceof MinecraftPlayer){
+            Collection<MotdTemplate> templates = this.dkMotd.getMotdTemplateManager().getTemplates();
+            return Iterators.map(templates
+                    ,MotdTemplate::getName
+                    , template -> template.getName().toLowerCase().startsWith(name.toLowerCase()));
+        }
+        return Collections.emptyList();
     }
 }

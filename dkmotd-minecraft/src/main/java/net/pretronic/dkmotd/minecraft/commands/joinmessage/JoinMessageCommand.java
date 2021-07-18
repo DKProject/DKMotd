@@ -1,20 +1,26 @@
 package net.pretronic.dkmotd.minecraft.commands.joinmessage;
 
 import net.pretronic.dkmotd.api.joinmessage.JoinMessageTemplate;
+import net.pretronic.dkmotd.api.motd.MotdTemplate;
 import net.pretronic.dkmotd.common.DefaultDKMotd;
 import net.pretronic.dkmotd.minecraft.commands.joinmessage.secondmessages.SecondMessagesCommand;
 import net.pretronic.dkmotd.minecraft.config.Messages;
 import net.pretronic.libraries.command.command.configuration.CommandConfiguration;
 import net.pretronic.libraries.command.command.object.DefinedNotFindable;
 import net.pretronic.libraries.command.command.object.MainObjectCommand;
+import net.pretronic.libraries.command.command.object.ObjectCompletable;
 import net.pretronic.libraries.command.command.object.ObjectNotFindable;
 import net.pretronic.libraries.command.sender.CommandSender;
 import net.pretronic.libraries.message.bml.variable.VariableSet;
+import net.pretronic.libraries.utility.Iterators;
 import net.pretronic.libraries.utility.interfaces.ObjectOwner;
+import org.mcnative.runtime.api.player.MinecraftPlayer;
 
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 
-public class JoinMessageCommand extends MainObjectCommand<JoinMessageTemplate> implements DefinedNotFindable<JoinMessageTemplate>, ObjectNotFindable {
+public class JoinMessageCommand extends MainObjectCommand<JoinMessageTemplate> implements DefinedNotFindable<JoinMessageTemplate>, ObjectNotFindable, ObjectCompletable {
 
     private final DefaultDKMotd dkMotd;
 
@@ -60,5 +66,16 @@ public class JoinMessageCommand extends MainObjectCommand<JoinMessageTemplate> i
             commandSender.sendMessage(Messages.ERROR_JOINMESSAGE_TEMPLATE_NOT_EXISTS, VariableSet.create()
                     .add("name", command));
         }
+    }
+
+    @Override
+    public Collection<String> complete(CommandSender sender, String name) {
+        if(sender instanceof MinecraftPlayer){
+            Collection<JoinMessageTemplate> templates = this.dkMotd.getJoinMessageTemplateManager().getTemplates();
+            return Iterators.map(templates
+                    ,JoinMessageTemplate::getName
+                    , template -> template.getName().toLowerCase().startsWith(name.toLowerCase()));
+        }
+        return Collections.emptyList();
     }
 }

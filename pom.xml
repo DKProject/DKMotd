@@ -7,7 +7,7 @@
     <groupId>net.pretronic.dkmotd</groupId>
     <artifactId>DKMotd</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.0.0-SNAPSHOT</version>
+    <version>1.0.34.42-SNAPSHOT</version>
     <modules>
         <module>dkmotd-api</module>
         <module>dkmotd-common</module>
@@ -15,13 +15,16 @@
     </modules>
 
     <properties>
+        <!-- Project settings -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
 
         <dependency.pretronic.libraries>1.2.85.225-SNAPSHOT</dependency.pretronic.libraries>
 
-        <dependency.mcnative.api>1.4.25.129-SNAPSHOT</dependency.mcnative.api>
-        <dependency.mcnative.runtime>1.13.10.120-SNAPSHOT</dependency.mcnative.runtime>
+        <dependency.mcnative.api>1.6.5.189-SNAPSHOT</dependency.mcnative.api>
+        <dependency.mcnative.runtime>1.14.26.181-SNAPSHOT</dependency.mcnative.runtime>
         <dependency.mcnative.licensing>1.0.5.8-SNAPSHOT</dependency.mcnative.licensing>
         <dependency.mcnative.buildtool>1.0.8.15-SNAPSHOT</dependency.mcnative.buildtool>
         <dependency.mcnative.loader>1.7.75.53</dependency.mcnative.loader>
@@ -38,4 +41,18 @@
             <url>https://repository.pretronic.net/repository/pretronic/</url>
         </repository>
     </repositories>
+
+    <distributionManagement>
+        <repository>
+            <id>pretronic</id>
+            <url>https://repository.pretronic.net/repository/pretronic/</url>
+        </repository>
+    </distributionManagement>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>pretronic</id>
+            <url>https://repository.pretronic.net/repository/pretronic/</url>
+        </pluginRepository>
+    </pluginRepositories>
 </project>

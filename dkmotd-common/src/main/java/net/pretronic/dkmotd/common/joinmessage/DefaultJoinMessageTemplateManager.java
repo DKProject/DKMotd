@@ -8,6 +8,7 @@ import net.pretronic.dkmotd.api.event.joinmessage.delete.JoinMessageTemplateDele
 import net.pretronic.dkmotd.api.event.joinmessage.delete.JoinMessageTemplateDeletedEvent;
 import net.pretronic.dkmotd.api.joinmessage.JoinMessageTemplate;
 import net.pretronic.dkmotd.api.joinmessage.JoinMessageTemplateManager;
+import net.pretronic.dkmotd.api.motd.MotdTemplate;
 import net.pretronic.dkmotd.common.DefaultDKMotd;
 import net.pretronic.dkmotd.common.event.joinmessage.active.DefaultJoinMessageTemplateActiveChangeEvent;
 import net.pretronic.dkmotd.common.event.joinmessage.active.DefaultJoinMessageTemplateActiveChangedEvent;
@@ -15,12 +16,14 @@ import net.pretronic.dkmotd.common.event.joinmessage.create.DefaultJoinMessageTe
 import net.pretronic.dkmotd.common.event.joinmessage.create.DefaultJoinMessageTemplateCreatedEvent;
 import net.pretronic.dkmotd.common.event.joinmessage.delete.DefaultJoinMessageTemplateDeleteEvent;
 import net.pretronic.dkmotd.common.event.joinmessage.delete.DefaultJoinMessageTemplateDeletedEvent;
+import net.pretronic.dkmotd.common.motd.DefaultMotdTemplate;
 import net.pretronic.libraries.document.Document;
 import net.pretronic.libraries.utility.Iterators;
 import net.pretronic.libraries.utility.annonations.Internal;
 import net.pretronic.libraries.utility.reflect.TypeReference;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -28,6 +31,8 @@ public class DefaultJoinMessageTemplateManager implements JoinMessageTemplateMan
 
     private static final String STORAGE_JOIN_MESSAGE_TEMPLATES = "JoinMessageTemplates";
     private static final String STORAGE_ACTIVE_JOIN_MESSAGE_TEMPLATE = "ActiveJoinMessageTemplate";
+
+    private static final JoinMessageTemplate DEFAULT_TEMPLATE = new DefaultJoinMessageTemplate(null, "default", "&cWelcome to this server&8. &cUse /joinmessage to change this message", null);
 
     private final DefaultDKMotd dkMotd;
 
@@ -38,10 +43,7 @@ public class DefaultJoinMessageTemplateManager implements JoinMessageTemplateMan
         this.dkMotd = dkMotd;
 
         this.templates = loadTemplates();
-        //@TODO Temporary
-        for (JoinMessageTemplate template : this.templates) {
-            ((DefaultJoinMessageTemplate)template).setDKMotd(dkMotd);
-        }
+
         this.activeTemplateName = loadActiveTemplateName();
     }
 
@@ -102,28 +104,33 @@ public class DefaultJoinMessageTemplateManager implements JoinMessageTemplateMan
 
         this.activeTemplateName = template.getName();
 
-        if(this.dkMotd.getStorage().getObject(STORAGE_ACTIVE_JOIN_MESSAGE_TEMPLATE) != null) {
-            this.dkMotd.getStorage().update(STORAGE_ACTIVE_JOIN_MESSAGE_TEMPLATE, this.activeTemplateName);
-        } else {
-            this.dkMotd.getStorage().insertObject(STORAGE_ACTIVE_JOIN_MESSAGE_TEMPLATE, this.activeTemplateName);
-        }
+        this.dkMotd.getStorage().set(STORAGE_ACTIVE_JOIN_MESSAGE_TEMPLATE, this.activeTemplateName);
+
         this.dkMotd.getEventBus().callEvent(JoinMessageTemplateActiveChangedEvent.class, new DefaultJoinMessageTemplateActiveChangedEvent(template));
         return true;
     }
 
     @Internal
     public void updateTemplatesStorage() {
-        this.dkMotd.getStorage().update(STORAGE_JOIN_MESSAGE_TEMPLATES, Document.newDocument(this.templates));
+        this.dkMotd.getStorage().set(STORAGE_JOIN_MESSAGE_TEMPLATES, Document.newDocument(this.templates));
     }
 
     private Collection<JoinMessageTemplate> loadTemplates() {
         Document document = this.dkMotd.getStorage().get(STORAGE_JOIN_MESSAGE_TEMPLATES);
         if(document == null) {
             Collection<JoinMessageTemplate> templates = new ArrayList<>();
-            this.dkMotd.getStorage().insert(STORAGE_JOIN_MESSAGE_TEMPLATES, Document.newDocument(templates));
+            templates.add(DEFAULT_TEMPLATE);
+            this.dkMotd.getStorage().set(STORAGE_JOIN_MESSAGE_TEMPLATES, Document.newDocument(templates));
+            for (JoinMessageTemplate template : templates) {
+                ((DefaultJoinMessageTemplate)template).setDKMotd(dkMotd);
+            }
             return templates;
         }
-        return new ArrayList<>(document.getAsObject(new TypeReference<Collection<DefaultJoinMessageTemplate>>(){}));
+        Collection<JoinMessageTemplate> templates = new ArrayList<>(document.getAsObject(new TypeReference<Collection<DefaultJoinMessageTemplate>>(){}));
+        for (JoinMessageTemplate template : templates) {
+            ((DefaultJoinMessageTemplate)template).setDKMotd(dkMotd);
+        }
+        return templates;
     }
 
     private String loadActiveTemplateName() {
@@ -132,5 +139,12 @@ public class DefaultJoinMessageTemplateManager implements JoinMessageTemplateMan
             return null;
         }
         return (String) value;
+    }
+
+    @Internal
+    public void reload() {
+        this.templates.clear();
+        this.templates.addAll(loadTemplates());
+        this.activeTemplateName = loadActiveTemplateName();
     }
 }

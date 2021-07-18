@@ -1,7 +1,6 @@
 package net.pretronic.dkmotd.common;
 
 import net.pretronic.dkmotd.api.DKMotd;
-import net.pretronic.dkmotd.api.joinmessage.JoinMessageTemplateManager;
 import net.pretronic.dkmotd.api.maintenance.Maintenance;
 import net.pretronic.dkmotd.common.joinmessage.DefaultJoinMessageTemplateManager;
 import net.pretronic.dkmotd.common.maintenance.DefaultMaintenance;
@@ -18,7 +17,7 @@ public class DefaultDKMotd implements DKMotd {
     private final String version;
     private final DefaultMotdTemplateManager motdTemplateManager;
     private final DefaultJoinMessageTemplateManager joinMessageTemplateManager;
-    private final DefaultMaintenance maintenance;
+    private DefaultMaintenance maintenance;
     private final EventBus eventBus;
     private final DKMotdStorage storage;
 
@@ -64,16 +63,21 @@ public class DefaultDKMotd implements DKMotd {
 
     @Internal
     public void updateMaintenanceStorage() {
-        getStorage().update(STORAGE_MAINTENANCE, Document.newDocument(this.maintenance));
+        getStorage().set(STORAGE_MAINTENANCE, Document.newDocument(this.maintenance));
     }
 
     private DefaultMaintenance loadMaintenance() {
         Document value = getStorage().get(STORAGE_MAINTENANCE);
         if(value == null) {
             DefaultMaintenance maintenance = new DefaultMaintenance(this);
-            getStorage().insert(STORAGE_MAINTENANCE, Document.newDocument(maintenance));
+            getStorage().set(STORAGE_MAINTENANCE, Document.newDocument(maintenance));
             return maintenance;
         }
         return value.getAsObject(DefaultMaintenance.class).setDKMotd(this);
+    }
+
+    @Internal
+    public void reloadMaintenance() {
+        this.maintenance = loadMaintenance();
     }
 }

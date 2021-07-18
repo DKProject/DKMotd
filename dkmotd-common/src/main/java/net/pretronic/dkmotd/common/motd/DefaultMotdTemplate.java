@@ -9,7 +9,10 @@ import net.pretronic.dkmotd.common.event.motd.update.DefaultMotdTemplateUpdatedE
 import net.pretronic.libraries.utility.annonations.Internal;
 import net.pretronic.libraries.utility.annonations.NotNull;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 public class DefaultMotdTemplate implements MotdTemplate {
 
@@ -115,6 +118,14 @@ public class DefaultMotdTemplate implements MotdTemplate {
     public boolean addSecondLine(String line) {
         List<String> lines = new ArrayList<>(getOrCopyCollection(this.secondLines));
         lines.add(line);
+        return setSecondsLines(lines);
+    }
+
+    @Override
+    public boolean modifySecondLine(int index, String line) {
+        List<String> lines = new ArrayList<>(getOrCopyCollection(this.secondLines));
+        if(index >= lines.size()) throw new IllegalArgumentException("Index is greater then size of second lines");
+        lines.set(index, line);
         return setSecondsLines(lines);
     }
 
@@ -256,6 +267,14 @@ public class DefaultMotdTemplate implements MotdTemplate {
     public boolean addPlayerInfo(String playerInfo) {
         List<String> lines = new ArrayList<>(getOrCopyList(this.playerInfo));
         lines.add(playerInfo);
+        return setPlayerInfo(lines);
+    }
+
+    @Override
+    public boolean modifyPlayerInfo(int index, String playerInfo) {
+        List<String> lines = new ArrayList<>(getOrCopyCollection(this.playerInfo));
+        if(index >= lines.size()) throw new IllegalArgumentException("Index is greater then size of player info");
+        lines.set(index, playerInfo);
         return setPlayerInfo(lines);
     }
 

@@ -1,6 +1,7 @@
 package net.pretronic.dkmotd.minecraft.commands.maintenance;
 
 import net.pretronic.dkmotd.api.DKMotd;
+import net.pretronic.dkmotd.minecraft.commands.maintenance.whitelist.WhitelistCommand;
 import net.pretronic.dkmotd.minecraft.config.Messages;
 import net.pretronic.libraries.command.NotFindable;
 import net.pretronic.libraries.command.command.MainCommand;
@@ -17,6 +18,8 @@ public class MaintenanceCommand extends MainCommand implements NotFindable {
         registerCommand(new TimeoutCommand(owner, dkMotd));
         registerCommand(new DurationCommand(owner, dkMotd));
         registerCommand(new InfoCommand(owner, dkMotd));
+        registerCommand(new ReasonCommand(owner, dkMotd));
+        registerCommand(new WhitelistCommand(owner, dkMotd));
     }
 
     @Override

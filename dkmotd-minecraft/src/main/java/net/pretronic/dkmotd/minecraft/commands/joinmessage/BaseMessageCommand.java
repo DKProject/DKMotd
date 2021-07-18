@@ -1,6 +1,7 @@
 package net.pretronic.dkmotd.minecraft.commands.joinmessage;
 
 import net.pretronic.dkmotd.api.joinmessage.JoinMessageTemplate;
+import net.pretronic.dkmotd.minecraft.commands.CommandUtil;
 import net.pretronic.dkmotd.minecraft.config.Messages;
 import net.pretronic.libraries.command.command.configuration.CommandConfiguration;
 import net.pretronic.libraries.command.command.object.ObjectCommand;
@@ -20,7 +21,7 @@ public class BaseMessageCommand extends ObjectCommand<JoinMessageTemplate> {
             sender.sendMessage(Messages.COMMAND_JOINMESSAGE_HELP);
             return;
         }
-        String text = args[0];
+        String text = CommandUtil.readStringFromArguments(args, 0);
 
         if(template.setBaseMessage(text)) {
             sender.sendMessage(Messages.COMMAND_JOINMESSAGE_BASE_MESSAGE, VariableSet.create()

@@ -16,6 +16,7 @@ public class SecondMessagesCommand extends MainObjectCommand<JoinMessageTemplate
         registerCommand(new RemoveCommand(owner));
         registerCommand(new SetCommand(owner));
         registerCommand(new ClearCommand(owner));
+        registerCommand(new ListCommand(owner));
     }
 
     @Override

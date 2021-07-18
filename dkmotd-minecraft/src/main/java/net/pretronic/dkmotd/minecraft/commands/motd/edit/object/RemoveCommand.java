@@ -30,7 +30,11 @@ public abstract class RemoveCommand extends ObjectCommand<MotdTemplate> {
             sender.sendMessage(Messages.ERROR_INDEX_NOT_VALID, VariableSet.create().add("index", rawIndex));
             return;
         }
-        int index = Integer.parseInt(rawIndex);
+        int index = Integer.parseInt(rawIndex)-1;
+        if(!canRemove(template, index)) {
+            sender.sendMessage(Messages.ERROR_INDEX_NOT_VALID, VariableSet.create().add("index", rawIndex));
+            return;
+        }
         if(remove(template, index)) {
             sender.sendMessage(this.successMessage, VariableSet.create()
                     .addDescribed("template", template));
@@ -38,4 +42,6 @@ public abstract class RemoveCommand extends ObjectCommand<MotdTemplate> {
     }
 
     protected abstract boolean remove(MotdTemplate template, int index);
+
+    protected abstract boolean canRemove(MotdTemplate template, int index);
 }

@@ -13,6 +13,6 @@ public class WrongVersionTextCommand extends EditStringCommand {
 
     @Override
     protected boolean change(MotdTemplate template, String text) {
-        return template.setBaseLine(text);
+        return template.setWrongVersionText(text);
     }
 }
