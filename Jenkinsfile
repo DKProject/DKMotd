@@ -16,7 +16,7 @@ String PROJECT_NAME = "DKMotd"
 
 boolean JAVADOCS_ENABLED = true
 String JAVADOCS_NAME = "dkmotd"
-String JAVADOCS_MODULES = ":DKMotd,:dkmotd-api,:dkmotd-api-minecraft"
+String JAVADOCS_MODULES = ":DKMotd,:dkmotd-api"
 
 def MIRROR_SERVER_PUBLISHING = [
         "dkmotd-minecraft/target/dkmotd-minecraft-%version%.jar": "default"
