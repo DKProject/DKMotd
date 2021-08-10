@@ -28,12 +28,19 @@ public class DKMotdConfig {
             .permission("dkmotd.command.joinMessage")
             .create();
 
+    public static CommandConfiguration COMMAND_TABLIST = CommandConfiguration.newBuilder()
+            .name("tablist")
+            .permission("dkmotd.command.tablist")
+            .create();
+
     public static String DATE_FORMAT_DISPLAY = "yyyy-MM-dd HH:mm:ss";
 
     @DocumentKey("date.format.input")
     private static String DATE_FORMAT_INPUT0 = "yyyy-MM-dd[[ ]['T']HH:mm[:ss][XXX]]";
     @DocumentIgnored
     private static SimpleDateFormat DATE_FORMAT_INPUT = null;
+
+    public static boolean TABLIST_ENABLED = true;
 
     @OnDocumentConfigurationLoad
     public static void onLoad() {

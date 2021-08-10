@@ -6,6 +6,7 @@ import net.pretronic.dkmotd.minecraft.commands.DKMotdCommand;
 import net.pretronic.dkmotd.minecraft.commands.joinmessage.JoinMessageCommand;
 import net.pretronic.dkmotd.minecraft.commands.maintenance.MaintenanceCommand;
 import net.pretronic.dkmotd.minecraft.commands.motd.MotdCommand;
+import net.pretronic.dkmotd.minecraft.commands.tablist.TablistCommand;
 import net.pretronic.dkmotd.minecraft.config.DKMotdConfig;
 import net.pretronic.dkmotd.minecraft.listener.PerformListener;
 import net.pretronic.libraries.plugin.lifecycle.Lifecycle;
@@ -13,6 +14,7 @@ import net.pretronic.libraries.plugin.lifecycle.LifecycleState;
 import org.mcnative.licensing.context.platform.McNativeLicenseIntegration;
 import org.mcnative.licensing.exceptions.CloudNotCheckoutLicenseException;
 import org.mcnative.licensing.exceptions.LicenseNotValidException;
+import org.mcnative.runtime.api.McNative;
 import org.mcnative.runtime.api.plugin.MinecraftPlugin;
 
 public class DKMotdPlugin extends MinecraftPlugin {
@@ -51,6 +53,10 @@ public class DKMotdPlugin extends MinecraftPlugin {
 
         getRuntime().getRegistry().registerService(this, DKMotd.class,dkMotd);
 
+        if(DKMotdConfig.TABLIST_ENABLED) {
+            McNative.getInstance().getLocal().getServerTablist().setOverviewFormatter(new DKMotdTablistOverviewFormatter(dkMotd));
+        }
+
         getLogger().info("DKMotd started successfully");
     }
 
@@ -62,8 +68,7 @@ public class DKMotdPlugin extends MinecraftPlugin {
         getRuntime().getLocal().getCommandManager().registerCommand(new MotdCommand(this, DKMotdConfig.COMMAND_MOTD, dkMotd));
         getRuntime().getLocal().getCommandManager().registerCommand(new MaintenanceCommand(this, DKMotdConfig.COMMAND_MAINTENANCE, dkMotd));
         getRuntime().getLocal().getCommandManager().registerCommand(new JoinMessageCommand(this, DKMotdConfig.COMMAND_JOIN_MESSAGE, dkMotd));
+        getRuntime().getLocal().getCommandManager().registerCommand(new TablistCommand(this, DKMotdConfig.COMMAND_TABLIST, dkMotd));
         getRuntime().getLocal().getCommandManager().registerCommand(new DKMotdCommand(this));
     }
-
-
 }

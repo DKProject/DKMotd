@@ -166,3 +166,12 @@ messages:
   &3Reason&8: &4&l{maintenance.reason}
   &e
   &aFor more information look at &eforum.example.net'
+
+  dkmotd.command.tablist.help: '${dkmotd.prefix} &cInvalid usage of tablist command&8:
+  &7/tablist info
+  &7/tablist header <header>
+  &7/tablist footer <footer>
+  &7/tablist labyModServerBanner <imageUrl>'
+  dkmotd.command.tablist.header: '${dkmotd.prefix} &7You have changed the tablist header to &e{tablist.header}'
+  dkmotd.command.tablist.footer: '${dkmotd.prefix} &7You have changed the tablist footer to &e{tablist.footer}'
+  dkmotd.command.tablist.labyModServerBanner: '${dkmotd.prefix} &7You have changed the LabyMod server banner to &e{tablist.labyModServerBanner}'

@@ -24,6 +24,8 @@ import org.mcnative.runtime.api.event.service.local.LocalServicePingEvent;
 import org.mcnative.runtime.api.network.component.server.ServerStatusResponse;
 import org.mcnative.runtime.api.player.ConnectedMinecraftPlayer;
 import org.mcnative.runtime.api.player.OnlineMinecraftPlayer;
+import org.mcnative.runtime.api.player.client.CustomClient;
+import org.mcnative.runtime.api.player.client.LabyModClient;
 import org.mcnative.runtime.api.protocol.MinecraftEdition;
 import org.mcnative.runtime.api.protocol.MinecraftProtocolVersion;
 import org.mcnative.runtime.api.text.Text;
@@ -60,6 +62,11 @@ public class PerformListener {
     @Listener(priority = EventPriority.HIGHEST)
     public void onPostLogin(MinecraftPlayerPostLoginEvent event) {
         sendJoinMessage(event.getOnlinePlayer());
+        ConnectedMinecraftPlayer player = event.getOnlinePlayer().getAsConnectedPlayer();
+        if(this.dkMotd.getTablist().getLabyModServerBannerUrl() != null && player.isCustomClient(CustomClient.LABYMOD)) {
+            LabyModClient client = player.getCustomClient(CustomClient.LABYMOD);
+            client.sendServerBanner(this.dkMotd.getTablist().getLabyModServerBannerUrl());
+        }
     }
 
     private void setServerStatusResponse(ServerStatusResponse response) {
@@ -130,6 +137,7 @@ public class PerformListener {
             this.dkMotd.getMotdTemplateManager().reload();
             this.dkMotd.getJoinMessageTemplateManager().reload();
             this.dkMotd.reloadMaintenance();
+            this.dkMotd.reloadTablist();
         }
     }
 
