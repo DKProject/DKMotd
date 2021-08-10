@@ -34,7 +34,9 @@ public class FaviconCommand extends ObjectCommand<MotdTemplate> {
         }
         BufferedImage favicon;
         String rawFavicon = args[0];
-        if(rawFavicon.startsWith("http")) {
+        if(rawFavicon.equalsIgnoreCase("unset")) {
+            favicon = null;
+        }else if(rawFavicon.startsWith("http")) {
             try {
                 favicon = ImageIO.read(FileUtil.newUrl(rawFavicon));
             } catch (IOException e) {
@@ -63,6 +65,7 @@ public class FaviconCommand extends ObjectCommand<MotdTemplate> {
 
     //Copied from bungeecord
     private String toBase64(BufferedImage image) {
+        if(image == null) return null;
         if (image.getWidth() != 64 || image.getHeight() != 64 )
         {
             throw new IllegalArgumentException( "Server icon must be exactly 64x64 pixels" );
