@@ -15,6 +15,7 @@ import org.mcnative.licensing.context.platform.McNativeLicenseIntegration;
 import org.mcnative.licensing.exceptions.CloudNotCheckoutLicenseException;
 import org.mcnative.licensing.exceptions.LicenseNotValidException;
 import org.mcnative.runtime.api.McNative;
+import org.mcnative.runtime.api.player.tablist.Tablist;
 import org.mcnative.runtime.api.plugin.MinecraftPlugin;
 
 public class DKMotdPlugin extends MinecraftPlugin {
@@ -54,7 +55,12 @@ public class DKMotdPlugin extends MinecraftPlugin {
         getRuntime().getRegistry().registerService(this, DKMotd.class,dkMotd);
 
         if(DKMotdConfig.TABLIST_ENABLED) {
-            McNative.getInstance().getLocal().getServerTablist().setOverviewFormatter(new DKMotdTablistOverviewFormatter(dkMotd));
+            Tablist tablist = McNative.getInstance().getLocal().getServerTablist();
+            if(tablist == null) {
+                tablist = Tablist.newTablist();
+                McNative.getInstance().getLocal().setServerTablist(tablist);
+            }
+            tablist.setOverviewFormatter(new DKMotdTablistOverviewFormatter(dkMotd));
         }
 
         getLogger().info("DKMotd started successfully");

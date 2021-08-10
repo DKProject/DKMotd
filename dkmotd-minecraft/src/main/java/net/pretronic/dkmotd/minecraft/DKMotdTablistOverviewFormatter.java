@@ -18,12 +18,12 @@ public class DKMotdTablistOverviewFormatter implements TablistOverviewFormatter 
     @Override
     public MessageComponent<?> formatHeader(ConnectedMinecraftPlayer receiver, VariableSet headerVariables, VariableSet footerVariables) {
         String header = dkMotd.getTablist().getHeader();
-        return Text.parse(headerVariables.add("player", receiver).replace(header));
+        return Text.parse(header);
     }
 
     @Override
     public MessageComponent<?> formatFooter(ConnectedMinecraftPlayer receiver, VariableSet headerVariables, VariableSet footerVariables) {
         String footer = dkMotd.getTablist().getFooter();
-        return Text.parse(footerVariables.add("player", receiver).replace(footer));
+        return Text.parse(footer);
     }
 }

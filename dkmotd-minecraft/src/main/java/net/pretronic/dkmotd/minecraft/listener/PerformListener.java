@@ -16,6 +16,7 @@ import net.pretronic.libraries.message.bml.variable.VariableSet;
 import net.pretronic.libraries.utility.GeneralUtil;
 import net.pretronic.libraries.utility.Iterators;
 import org.mcnative.runtime.api.McNative;
+import org.mcnative.runtime.api.event.player.login.MinecraftPlayerCustomClientLoginEvent;
 import org.mcnative.runtime.api.event.player.login.MinecraftPlayerLoginEvent;
 import org.mcnative.runtime.api.event.player.login.MinecraftPlayerPostLoginEvent;
 import org.mcnative.runtime.api.event.player.settings.MinecraftPlayerSettingsChangedEvent;
@@ -62,9 +63,12 @@ public class PerformListener {
     @Listener(priority = EventPriority.HIGHEST)
     public void onPostLogin(MinecraftPlayerPostLoginEvent event) {
         sendJoinMessage(event.getOnlinePlayer());
-        ConnectedMinecraftPlayer player = event.getOnlinePlayer().getAsConnectedPlayer();
-        if(this.dkMotd.getTablist().getLabyModServerBannerUrl() != null && player.isCustomClient(CustomClient.LABYMOD)) {
-            LabyModClient client = player.getCustomClient(CustomClient.LABYMOD);
+    }
+
+    @Listener(priority = EventPriority.HIGHEST)
+    public void onCustomClient(MinecraftPlayerCustomClientLoginEvent event) {
+        if(this.dkMotd.getTablist().getLabyModServerBannerUrl() != null && event.getClient() instanceof LabyModClient) {
+            LabyModClient client = (LabyModClient) event.getClient();
             client.sendServerBanner(this.dkMotd.getTablist().getLabyModServerBannerUrl());
         }
     }
