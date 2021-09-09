@@ -8,6 +8,10 @@ import net.pretronic.libraries.command.command.configuration.CommandConfiguratio
 import net.pretronic.libraries.command.sender.CommandSender;
 import net.pretronic.libraries.message.bml.variable.VariableSet;
 import net.pretronic.libraries.utility.interfaces.ObjectOwner;
+import net.pretronic.libraries.utility.io.FileUtil;
+
+import javax.imageio.ImageIO;
+import java.io.IOException;
 
 public class LabyModServerBannerCommand extends BasicCommand {
 
@@ -25,6 +29,12 @@ public class LabyModServerBannerCommand extends BasicCommand {
             return;
         }
         String bannerUrl = CommandUtil.readStringFromArguments(args, 0);
+        if(bannerUrl.equalsIgnoreCase("unset")) {
+            bannerUrl = null;
+        }else if(!bannerUrl.startsWith("http")) {
+            sender.sendMessage(Messages.ERROR_FAVICON_NOT_VALID, VariableSet.create().add("value", bannerUrl));
+            return;
+        }
         if(this.dkMotd.getTablist().setLabyModServerBannerUrl(bannerUrl)) {
             sender.sendMessage(Messages.COMMAND_TABLIST_LABYMODSERVERBANNER, VariableSet.create().addDescribed("tablist", dkMotd.getTablist()));
         }
