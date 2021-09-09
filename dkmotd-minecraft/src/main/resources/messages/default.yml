@@ -114,6 +114,17 @@ messages:
   &8» &7Active&8: &e{maintenance.active}
   &8» &7Timeout&8: &e{maintenance.formattedTimeout}'
 
+  dkmotd.command.maintenance.whitelist.help: '${dkmotd.prefix} &cInvalid usage of maintenance whitelist command&8:
+  &7/maintenance whitelist add <player>
+  &7/maintenance whitelist remove <player>
+  &7/maintenance whitelist info
+  &7/maintenance whitelist clear'
+  dkmotd.command.maintenance.whitelist.info: '${dkmotd.prefix} &7Maintenance whitelisted players
+  @for("name" in {maintenance.whitelistedNames}, ${dkmotd.command.maintenance.whitelist.info.loop},"\n", "\n")'
+  dkmotd.command.maintenance.whitelist.info.loop: ' &8- &e{name} !["&8[&cRemove&8]"]("run:///maintenance whitelist {name}")'
+  dkmotd.command.maintenance.whitelist.add: '${dkmotd.prefix} &7You have added &e{player.displayName} &7to the maintenance whitelist'
+  dkmotd.command.maintenance.whitelist.remove: '${dkmotd.prefix} &cYou have removed &e{player.displayName} &7from the maintenance whitelist'
+  dkmotd.command.maintenance.whitelist.clear: '${dkmotd.prefix} &7You have cleared the maintenance whitelist'
 
   dkmotd.command.joinMessage.help: '${dkmotd.prefix} &cInvalid usage of joinmessage command&8:
   &7/joinmessage list
