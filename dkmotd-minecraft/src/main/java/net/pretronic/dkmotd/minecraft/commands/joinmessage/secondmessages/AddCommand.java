@@ -18,7 +18,7 @@ public class AddCommand extends ObjectCommand<JoinMessageTemplate> {
     @Override
     public void execute(CommandSender sender, JoinMessageTemplate template, String[] args) {
         if(args.length == 0) {
-            sender.sendMessage(Messages.COMMAND_JOINMESSAGE_HELP);
+            sender.sendMessage(Messages.COMMAND_JOINMESSAGE_SECONDMESSAGES_HELP);
             return;
         }
         String value = CommandUtil.readStringFromArguments(args, 0);

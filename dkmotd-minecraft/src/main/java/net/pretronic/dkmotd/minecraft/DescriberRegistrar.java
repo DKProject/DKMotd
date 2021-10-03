@@ -9,10 +9,14 @@ import net.pretronic.libraries.message.bml.variable.describer.VariableDescriberR
 import net.pretronic.libraries.utility.Iterators;
 import net.pretronic.libraries.utility.duration.DurationProcessor;
 import org.mcnative.runtime.api.McNative;
+import org.mcnative.runtime.api.player.MinecraftPlayer;
 import org.mcnative.runtime.api.text.Text;
 
 import java.text.SimpleDateFormat;
+import java.util.Collection;
 import java.util.Date;
+import java.util.UUID;
+import java.util.function.Function;
 
 public class DescriberRegistrar {
 
@@ -34,6 +38,13 @@ public class DescriberRegistrar {
         maintenanceDescriber.registerFunction("formattedRemaining", maintenance -> DurationProcessor.getStandard().format(maintenance.getRemaining()));
         maintenanceDescriber.registerFunction("whitelist", maintenance -> Iterators.map(maintenance.getWhitelist(), uniqueId -> McNative.getInstance().getPlayerManager().getPlayer(uniqueId)));
         maintenanceDescriber.registerFunction("active", DefaultMaintenance::isActive);
+        maintenanceDescriber.registerFunction("whitelistedPlayers", maintenance -> {
+            Collection<String> names = Iterators.map(maintenance.getWhitelist(), playerId -> {
+                MinecraftPlayer player = McNative.getInstance().getPlayerManager().getPlayer(playerId);
+                return player == null ? playerId.toString() : player.getName();
+            });
+            return names;
+        });
 
         VariableDescriber<DefaultJoinMessageTemplate> joinMessageDescriber = VariableDescriberRegistry.registerDescriber(DefaultJoinMessageTemplate.class);
         joinMessageDescriber.registerFunction("name", template -> template.getName() == null ? "unset" : template.getName());

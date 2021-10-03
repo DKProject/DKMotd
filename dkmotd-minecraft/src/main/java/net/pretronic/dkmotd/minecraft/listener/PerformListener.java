@@ -16,6 +16,7 @@ import net.pretronic.libraries.message.bml.variable.VariableSet;
 import net.pretronic.libraries.utility.GeneralUtil;
 import net.pretronic.libraries.utility.Iterators;
 import org.mcnative.runtime.api.McNative;
+import org.mcnative.runtime.api.event.player.login.MinecraftPlayerCustomClientLoginEvent;
 import org.mcnative.runtime.api.event.player.login.MinecraftPlayerLoginEvent;
 import org.mcnative.runtime.api.event.player.login.MinecraftPlayerPostLoginEvent;
 import org.mcnative.runtime.api.event.player.settings.MinecraftPlayerSettingsChangedEvent;
@@ -24,6 +25,8 @@ import org.mcnative.runtime.api.event.service.local.LocalServicePingEvent;
 import org.mcnative.runtime.api.network.component.server.ServerStatusResponse;
 import org.mcnative.runtime.api.player.ConnectedMinecraftPlayer;
 import org.mcnative.runtime.api.player.OnlineMinecraftPlayer;
+import org.mcnative.runtime.api.player.client.CustomClient;
+import org.mcnative.runtime.api.player.client.LabyModClient;
 import org.mcnative.runtime.api.protocol.MinecraftEdition;
 import org.mcnative.runtime.api.protocol.MinecraftProtocolVersion;
 import org.mcnative.runtime.api.text.Text;
@@ -60,6 +63,14 @@ public class PerformListener {
     @Listener(priority = EventPriority.HIGHEST)
     public void onPostLogin(MinecraftPlayerPostLoginEvent event) {
         sendJoinMessage(event.getOnlinePlayer());
+    }
+
+    @Listener(priority = EventPriority.HIGHEST)
+    public void onCustomClient(MinecraftPlayerCustomClientLoginEvent event) {
+        if(this.dkMotd.getTablist().getLabyModServerBannerUrl() != null && event.getClient() instanceof LabyModClient) {
+            LabyModClient client = (LabyModClient) event.getClient();
+            client.sendServerBanner(this.dkMotd.getTablist().getLabyModServerBannerUrl());
+        }
     }
 
     private void setServerStatusResponse(ServerStatusResponse response) {
@@ -130,6 +141,7 @@ public class PerformListener {
             this.dkMotd.getMotdTemplateManager().reload();
             this.dkMotd.getJoinMessageTemplateManager().reload();
             this.dkMotd.reloadMaintenance();
+            this.dkMotd.reloadTablist();
         }
     }
 

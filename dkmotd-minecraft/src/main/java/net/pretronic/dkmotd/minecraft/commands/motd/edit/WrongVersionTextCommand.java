@@ -13,6 +13,6 @@ public class WrongVersionTextCommand extends EditStringCommand {
 
     @Override
     protected boolean change(MotdTemplate template, String text) {
-        return template.setWrongVersionText(text);
+        return template.setWrongVersionText(text.equalsIgnoreCase("unset") ? null : text);
     }
 }

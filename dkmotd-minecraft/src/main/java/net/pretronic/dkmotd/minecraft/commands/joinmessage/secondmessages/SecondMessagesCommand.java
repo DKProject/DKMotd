@@ -26,6 +26,6 @@ public class SecondMessagesCommand extends MainObjectCommand<JoinMessageTemplate
 
     @Override
     public void commandNotFound(CommandSender sender, JoinMessageTemplate object, String command, String[] args) {
-        sender.sendMessage(Messages.COMMAND_JOINMESSAGE_HELP);
+        sender.sendMessage(Messages.COMMAND_JOINMESSAGE_SECONDMESSAGES_HELP);
     }
 }
