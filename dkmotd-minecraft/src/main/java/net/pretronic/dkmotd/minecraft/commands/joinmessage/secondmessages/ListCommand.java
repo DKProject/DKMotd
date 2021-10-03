@@ -16,6 +16,6 @@ public class ListCommand extends ObjectCommand<JoinMessageTemplate> {
 
     @Override
     public void execute(CommandSender sender, JoinMessageTemplate template, String[] args) {
-        sender.sendMessage(Messages.COMMAND_JOINMESSAGE_LIST, VariableSet.create().addDescribed("template", template));
+        sender.sendMessage(Messages.COMMAND_JOINMESSAGE_SECONDMESSAGES_LIST, VariableSet.create().addDescribed("template", template));
     }
 }

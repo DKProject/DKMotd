@@ -20,12 +20,12 @@ public class SetCommand extends ObjectCommand<JoinMessageTemplate> {
     @Override
     public void execute(CommandSender sender, JoinMessageTemplate template, String[] args) {
         if(args.length == 0) {
-            sender.sendMessage(Messages.COMMAND_JOINMESSAGE_HELP);
+            sender.sendMessage(Messages.COMMAND_JOINMESSAGE_SECONDMESSAGES_HELP);
             return;
         }
         String value = CommandUtil.readStringFromArguments(args, 0);
         if(template.setSecondMessages(Collections.singleton(value))) {
-            sender.sendMessage(Messages.COMMAND_JOINMESSAGE_SECONDMESSAGES_ADD, VariableSet.create()
+            sender.sendMessage(Messages.COMMAND_JOINMESSAGE_SECONDMESSAGES_SET, VariableSet.create()
                     .addDescribed("template", template));
         }
     }

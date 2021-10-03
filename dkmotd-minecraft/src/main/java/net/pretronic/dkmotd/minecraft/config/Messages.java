@@ -98,4 +98,10 @@ public class Messages {
     public static final MessageKeyComponent COMMAND_JOINMESSAGE_SECONDMESSAGES_SET = Text.ofMessageKey("dkmotd.command.joinMessage.secondMessages.set");
     public static final MessageKeyComponent COMMAND_JOINMESSAGE_SECONDMESSAGES_CLEAR = Text.ofMessageKey("dkmotd.command.joinMessage.secondMessages.clear");
     public static final MessageKeyComponent COMMAND_JOINMESSAGE_SECONDMESSAGES_LIST = Text.ofMessageKey("dkmotd.command.joinMessage.secondMessages.list");
+
+
+    public static final MessageKeyComponent COMMAND_TABLIST_HELP = Text.ofMessageKey("dkmotd.command.tablist.help");
+    public static final MessageKeyComponent COMMAND_TABLIST_HEADER = Text.ofMessageKey("dkmotd.command.tablist.header");
+    public static final MessageKeyComponent COMMAND_TABLIST_FOOTER = Text.ofMessageKey("dkmotd.command.tablist.footer");
+    public static final MessageKeyComponent COMMAND_TABLIST_LABYMODSERVERBANNER = Text.ofMessageKey("dkmotd.command.tablist.labyModServerBanner");
 }
