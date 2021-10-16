@@ -94,6 +94,9 @@ public class PerformListener {
             } else {
                 supportedVersions = McNative.getInstance().getPlatform().getJoinableProtocolVersions();
             }
+            System.out.println("Wrong version text check:");
+            System.out.println(supportedVersions);
+            System.out.println("Response version " + response.getVersion().getProtocol());
             boolean supported = false;
             for (MinecraftProtocolVersion supportedVersion : supportedVersions) {
                 if(response.getVersion().getProtocol() == supportedVersion) {
@@ -101,6 +104,7 @@ public class PerformListener {
                     break;
                 }
             }
+            System.out.println("Supported:" + supported);
             if(supported) {
                 if(template.getVersionText() != null) {
                     response.setVersion(Text.translateAlternateColorCodes('&', template.getVersionText()), MinecraftProtocolVersion.UNKNOWN);
