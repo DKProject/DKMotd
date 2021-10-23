@@ -218,6 +218,13 @@ public class DefaultMotdTemplate implements MotdTemplate {
     }
 
     @Override
+    public boolean removeSupportedVersionByIndex(int index) {
+        List<Integer> versions = new ArrayList<>(getOrCopyCollection(this.supportedVersions));
+        if(!versions.remove(versions.get(index))) throw new IllegalArgumentException(index + " is not available");
+        return setSupportedVersions(versions);
+    }
+
+    @Override
     public boolean clearSupportedVersions() {
         return setSupportedVersions(new ArrayList<>());
     }

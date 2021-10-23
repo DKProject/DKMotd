@@ -1,7 +1,5 @@
 package net.pretronic.dkmotd.minecraft.listener;
 
-import net.pretronic.dkmotd.api.DKMotd;
-import net.pretronic.dkmotd.api.event.maintenance.active.MaintenanceActiveChangeEvent;
 import net.pretronic.dkmotd.api.event.maintenance.active.MaintenanceActiveChangedEvent;
 import net.pretronic.dkmotd.api.joinmessage.JoinMessageTemplate;
 import net.pretronic.dkmotd.api.maintenance.Maintenance;
@@ -19,13 +17,11 @@ import org.mcnative.runtime.api.McNative;
 import org.mcnative.runtime.api.event.player.login.MinecraftPlayerCustomClientLoginEvent;
 import org.mcnative.runtime.api.event.player.login.MinecraftPlayerLoginEvent;
 import org.mcnative.runtime.api.event.player.login.MinecraftPlayerPostLoginEvent;
-import org.mcnative.runtime.api.event.player.settings.MinecraftPlayerSettingsChangedEvent;
 import org.mcnative.runtime.api.event.service.PluginSettingUpdateEvent;
 import org.mcnative.runtime.api.event.service.local.LocalServicePingEvent;
 import org.mcnative.runtime.api.network.component.server.ServerStatusResponse;
 import org.mcnative.runtime.api.player.ConnectedMinecraftPlayer;
 import org.mcnative.runtime.api.player.OnlineMinecraftPlayer;
-import org.mcnative.runtime.api.player.client.CustomClient;
 import org.mcnative.runtime.api.player.client.LabyModClient;
 import org.mcnative.runtime.api.protocol.MinecraftEdition;
 import org.mcnative.runtime.api.protocol.MinecraftProtocolVersion;
@@ -88,15 +84,13 @@ public class PerformListener {
                 response.setDescription(Text.parse(baseLine), Text.parse(secondLine));
             }
 
-            Collection<MinecraftProtocolVersion> supportedVersions = null;
+            Collection<MinecraftProtocolVersion> supportedVersions;
             if(template.getSupportedVersions() != null && !template.getSupportedVersions().isEmpty()) {
                 supportedVersions = Iterators.map(template.getSupportedVersions(), version -> MinecraftProtocolVersion.of(MinecraftEdition.JAVA, version));
             } else {
                 supportedVersions = McNative.getInstance().getPlatform().getJoinableProtocolVersions();
             }
-            System.out.println("Wrong version text check:");
-            System.out.println(supportedVersions);
-            System.out.println("Response version " + response.getVersion().getProtocol());
+
             boolean supported = false;
             for (MinecraftProtocolVersion supportedVersion : supportedVersions) {
                 if(response.getVersion().getProtocol() == supportedVersion) {
@@ -104,7 +98,7 @@ public class PerformListener {
                     break;
                 }
             }
-            System.out.println("Supported:" + supported);
+
             if(supported) {
                 if(template.getVersionText() != null) {
                     response.setVersion(Text.translateAlternateColorCodes('&', template.getVersionText()), MinecraftProtocolVersion.UNKNOWN);

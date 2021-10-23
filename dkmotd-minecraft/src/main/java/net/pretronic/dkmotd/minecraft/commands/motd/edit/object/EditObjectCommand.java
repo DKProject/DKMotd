@@ -28,7 +28,7 @@ public abstract class EditObjectCommand<O> extends ObjectCommand<MotdTemplate> {
         }
         O value = parse(args);
         if(value == null) {
-            sender.sendMessage(failedMessage);
+            sender.sendMessage(failedMessage,VariableSet.create().add("value",args[0]));
             return;
         }
         if(change(template, value)) {

@@ -46,6 +46,8 @@ public interface MotdTemplate {
 
     boolean removeSupportedVersion(int version);
 
+    boolean removeSupportedVersionByIndex(int index);
+
     boolean clearSupportedVersions();
 
 

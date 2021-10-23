@@ -35,8 +35,8 @@ public class SupportedVersionsCommand extends MainObjectCommand<MotdTemplate> im
         });
         registerCommand(new RemoveCommand(owner, Messages.COMMAND_MOTD_SUPPORTEDVERSIONS_REMOVE) {
             @Override
-            protected boolean remove(MotdTemplate template, int version) {
-                return template.removeSupportedVersion(version);
+            protected boolean remove(MotdTemplate template, int index) {
+                return template.removeSupportedVersionByIndex(index);
             }
 
             @Override
